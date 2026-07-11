@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!--
+  CRAMAN GUITARS — About Us Page
+  File: pages/about.html
+
+  FOR BEGINNERS — FILE PATHS FROM THIS PAGE:
+  This page is INSIDE the /pages/ folder.
+  To reach files outside this folder, go UP one level with ../
+    ../css/styles.css              (up one, into css/)
+    ../images/guitars/juliette.jpg (up one, into images/guitars/)
+    ../js/main.js                  (up one, into js/)
+    ../index.html                  (up one — the home page)
+    contact.html                   (same folder — no ../ needed)
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Craman Guitars</title>
+  <meta name="description" content="The story of Craig Illman — luthier, educator, and founder of Craman Guitars.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+  <!-- BACKGROUND GUITAR IMAGE -->
+  <div class="page-background" aria-hidden="true">
+    <img src="../images/guitars/juliette.jpg" alt="">
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <div class="site-nav">
+    <a href="index.html" class="nav-brand">
+      Craman Guitars
+      <span>Handcrafted Australian Guitars</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="catalogue.html">Catalogue</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-wrapper">
+    <main>
+      <div class="container">
+
+        <!-- Page heading -->
+        <div class="page-hero">
+          <p class="page-hero-eyebrow">The Maker</p>
+          <h1 class="page-hero-title">About Craig Illman</h1>
+          <p class="page-hero-sub">Luthier. Educator. A lifetime spent listening to wood.</p>
+        </div>
+
+        <!-- Article 1: The Spark -->
+        <article class="content-block">
+          <h2>The Spark: A Lifelong Obsession with Music</h2>
+          <p>
+            I began the journey back in 1974. As a high school kid playing in local bands,
+            music wasn't just a hobby — it was everything. But moving to the country meant
+            that when equipment broke or needed tweaking, there was no local luthier to
+            turn to. Out of necessity, a tinkerer was born. Those early years spent diving
+            into setups and wiring modifications laid the foundation for a deep understanding
+            of what makes an instrument tick.
+          </p>
+          <p>
+            Music became the heartbeat of our home. By the age of three, my sons were sitting
+            on my knee, learning their first chords and inheriting a lifelong appreciation
+            for the craft.
+          </p>
+        </article>
+
+        <!-- Article 2: The Evolution -->
+        <article class="content-block">
+          <h2>The Evolution: From Tinkering to Handcrafting</h2>
+          <p>
+            What started as simple modifications soon evolved into creation. Inspired by classic
+            Fender principles, I began building electric guitars from scratch. The turning
+            point, however, came when I built my very first acoustic guitar as a gift for
+            my son. The experience was profound, sparking a tradition of crafting bespoke
+            instruments as gifts for loved ones — and eventually, one-off custom guitars
+            for musicians seeking something truly extraordinary.
+          </p>
+          <p>
+            Today, I continue to design and build these unique pieces right from my home
+            workshop in Victoria, while still teaching  at <a href="https://ncat.vic.edu.au/musical-instrument-making-repair-tertiary/" target="new">NCAT</a>.
+          </p>
+        </article>
+
+        <!-- Article 3: The Credential -->
+        <article class="content-block">
+          <h2>The Credential: Shaping the Next Generation of Luthiers</h2>
+          <p>
+            My professional life has always been deeply intertwined with education. While
+            working and teaching CAD (Computer-Aided Design) at the high school level, I
+            collaborated with like-minded educators and industry partners — including Maton
+            and Cole Clark — to pioneer a standardised pathway for the craft. Together, we
+            developed the curriculum for the
+            <em>Certificate IV in Musical Instrument Making and Repair</em>.
+          </p>
+          <p>
+            For the past 15 years, I have had the privilege of teaching this rigorous course
+            to adult students, passing on the precision, patience, and art of lutherie.
+          </p>
+        </article>
+
+        <!-- Article 4: Global Insights -->
+        <article class="content-block">
+          <h2>Global Insights &amp; Scientific Precision</h2>
+          <p>
+            Teaching opened doors to a global community of master builders. My ongoing
+            studies in the field led to exclusive invitations to Italy, where I attended
+            prestigious guitar conferences and seminars in Cremona and Verona. Gaining
+            hands-on, practical insights from some of the world's most esteemed builders
+            fundamentally elevated my approach to construction.
+          </p>
+          <p>
+            Furthermore, I have extensively studied the physical and acoustic properties
+            of tonewoods and guitar physics. This scientific approach ensures that every
+            guitar isn't just visually stunning — it is mathematically and structurally
+            engineered to produce the exact sound, resonance, and tactile feel a musician
+            demands.
+          </p>
+        </article>
+
+        <!-- Article 5: The Next Chapter -->
+        <article class="content-block">
+          <h2>The Next Chapter</h2>
+          <p>
+            With retirement from formal teaching just around the corner, I am stepping out
+            of the classroom and fully into the workshop. This next chapter is dedicated
+            entirely to my true passion: pouring decades of experience, global knowledge,
+            and raw dedication into building world-class, handcrafted guitars.
+          </p>
+          <p>
+            Whether you are looking for a bespoke electric built on timeless principles
+            or a responsive acoustic designed specifically for your playing style —<br>
+<a href="contact.html">Let's build your dream instrument</a>.
+          </p>
+        </article>
+
+        <!-- Article 6: Get in Touch -->
+        <article class="content-block">
+          <h2>Get in Touch</h2>
+          <p>Commissions are taken by enquiry. Every build begins with a conversation.</p>
+
+          <table style="margin-top: 16px; border-collapse: collapse; width: 100%;">
+            <tr>
+              <td style="font-family: 'Courier Prime', monospace; font-size: 11px;
+                         color: #c9a84c; letter-spacing: 0.2em; text-transform: uppercase;
+                         padding: 10px 20px 10px 0; width: 100px; vertical-align: top;">
+                Luthier
+              </td>
+              <td style="color: #f0ece4; padding: 10px 0; border-bottom: 1px solid #2a2a2a;">
+                Craig Illman
+              </td>
+            </tr>
+            <tr>
+              <td style="font-family: 'Courier Prime', monospace; font-size: 11px;
+                         color: #c9a84c; letter-spacing: 0.2em; text-transform: uppercase;
+                         padding: 10px 20px 10px 0; vertical-align: top;">
+                Location
+              </td>
+              <td style="color: #f0ece4; padding: 10px 0; border-bottom: 1px solid #2a2a2a;">
+                Derrinallum, Victoria, Australia
+              </td>
+            </tr>
+            <tr>
+              <td style="font-family: 'Courier Prime', monospace; font-size: 11px;
+                         color: #c9a84c; letter-spacing: 0.2em; text-transform: uppercase;
+                         padding: 10px 20px 10px 0; vertical-align: top;">
+                Phone
+              </td>
+              <td style="color: #f0ece4; padding: 10px 0;">
+                <a href="tel:0490553357">0490 553 357</a>
+              </td>
+            </tr>
+          </table>
+
+          <div class="mt-lg"><a href="contact.html" class="btn btn-primary">Send an Enquiry</a></div>
+        </article>
+
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <div class="site-footer">
+      <div class="container">
+        <div class="footer-inner clearfix">
+          <div class="footer-col">
+            <span class="footer-brand-name">Craman Guitars</span>
+            <p class="footer-brand-desc">Handcrafted acoustic and electric guitars built to order in Derrinallum, Victoria, Australia.</p>
+          </div>
+          <div class="footer-col">
+            <h3>Pages</h3>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="catalogue.html">Catalogue</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="tel:0490553357">0490 553 357</a></li>
+              <li><a href="contact.html">Send an enquiry</a></li>
+              <li><span style="color: #9a9590; font-size: 14px;">Derrinallum, Victoria</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom clearfix">
+          <span>&copy; 2026 Craman Guitars. Craig Illman, Luthier.</span>
+          <span>Derrinallum, Victoria, Australia</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .page-wrapper -->
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

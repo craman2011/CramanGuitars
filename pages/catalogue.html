@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--
+  CRAMAN GUITARS — Catalogue Page
+  File: pages/catalogue.html
+
+  TO ADD A NEW GUITAR CARD:
+  1. Copy the block between the comments marked "GUITAR CARD START" and "GUITAR CARD END"
+  2. Paste it after the closing </article> of the last card
+  3. Update: image src, alt text, badge text, guitar name, model, description, and each spec row
+  4. Place the photo in: ../images/guitars/your-photo.jpg
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue — Craman Guitars</title>
+  <meta name="description" content="The Craman Guitars catalogue. Handcrafted acoustic guitars featuring Huon pine soundboards, built to order in Melbourne, Australia.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+  <!-- BACKGROUND GUITAR IMAGE -->
+  <div class="page-background" aria-hidden="true">
+    <img src="../images/guitars/juliette.jpg" alt="">
+  </div>
+
+ <!-- NAVIGATION BAR -->
+  <div class="site-nav">
+    <a href="index.html" class="nav-brand">
+      Craman Guitars
+      <span>Handcrafted Australian Guitars</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="catalogue.html">Catalogue</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-wrapper">
+    <main>
+      <div class="container">
+
+        <!-- Page heading -->
+        <div class="page-hero">
+          <p class="page-hero-eyebrow">Instruments</p>
+          <h1 class="page-hero-title">The Craman Catalogue</h1>
+          <p class="page-hero-sub">
+            Each guitar is a one-of-a-kind commission. The instruments below represent
+            completed builds. Every specification can be adapted to your requirements.
+          </p>
+        </div>
+
+        <!-- Intro article -->
+        <article class="content-block">
+          <h2>Bespoke by Design</h2>
+          <p>
+            No two Craman guitars are identical. The instruments shown here are completed
+            builds — each one a conversation made physical. They are presented as a
+            reference point for what is possible, not as stock items awaiting shipment.
+          </p>
+          <p>
+            If a guitar shown here resonates with you, it is a starting point. We can
+            build something close to it, or we can build something entirely your own.
+              <br>
+            <a href="contact.html">Get in touch to begin.</a>
+          </p>
+        </article>
+
+        <!-- Section label -->
+        <div class="section-divider"></div>
+        <p class="section-eyebrow">Current Builds</p>
+
+        <!-- GUITAR CARDS GRID -->
+        <div class="catalogue-grid">
+
+          <!-- =============================================
+               GUITAR CARD START — Juliette
+               Copy from here to "GUITAR CARD END" to add more
+          ============================================== -->
+          <article class="guitar-card">
+
+            <div class="guitar-card-image">
+              <img src="../images/guitars/juliette.jpg"
+                   alt="Juliette — a Craman Orchestra Model acoustic guitar with Huon pine soundboard, photographed against a black background">
+              <span class="guitar-card-badge">Orchestra Model</span>
+            </div>
+
+            <div class="guitar-card-body">
+              <h2 class="guitar-card-name">Juliette</h2>
+              <p class="guitar-card-model">OM &middot; Acoustic &middot; One-Off Build</p>
+              <p class="guitar-card-desc">
+                The flagship of the Craman catalogue. Juliette was conceived as a
+                demonstration of what Huon pine can achieve in the hands of a builder
+                who understands its physics. Balanced, articulate, and stunning under
+                stage lighting — she plays as beautifully as she photographs.
+              </p>
+
+              <ul class="guitar-specs">
+                <li><span class="spec-label">Body</span><span class="spec-value">Orchestra Model (OM)</span></li>
+                <li><span class="spec-label">Top</span><span class="spec-value">Huon Pine — Solid</span></li>
+                <li><span class="spec-label">Back &amp; Sides</span><span class="spec-value">Figured Maple</span></li>
+                <li><span class="spec-label">Neck</span><span class="spec-value">1 piece Queensland Maple</span></li>
+                <li><span class="spec-label">Fretboard</span><span class="spec-value">Maple</span></li>
+                <li><span class="spec-label">Scale</span><span class="spec-value">648 mm</span></li>
+                <li><span class="spec-label">Finish</span><span class="spec-value">Satin Nitrocellulose</span></li>
+                <li><span class="spec-label">Rosette</span><span class="spec-value">Hand-inlaid purfling, Laser Craman signature</span></li>
+                <li><span class="spec-label">Status</span><span class="spec-value">Completed — for reference</span></li>
+              </ul>
+            </div>
+
+          </article>
+          <!-- GUITAR CARD END -->
+
+
+          <!-- =============================================
+               PLACEHOLDER CARD — replace with next build
+          ============================================== -->
+            <article class="guitar-card">
+
+            <div class="guitar-card-image">
+              <img src="../images/guitars/Romeo.png"
+                   alt="Juliette — a Craman Orchestra Model acoustic guitar with Huon pine soundboard, photographed against a black background">
+              <span class="guitar-card-badge">Orchestra Model</span>
+            </div>
+
+            <div class="guitar-card-body">
+              <h2 class="guitar-card-name">Romeo</h2>
+              <p class="guitar-card-model">OM &middot; Acoustic &middot; One-Off Build</p>
+              <p class="guitar-card-desc">
+                Romeo was conceived as a companion to Huon pine OM Juliette. Built the following year after Juliette in Verona, Italy, Romeo was built within the walls the San Fermo Church, undoubtedly providing inspiration.
+              </p>
+
+              <ul class="guitar-specs">
+                <li><span class="spec-label">Body</span><span class="spec-value">Orchestra Model (OM)</span></li>
+                <li><span class="spec-label">Top</span><span class="spec-value">Huon Pine — Solid</span></li>
+                <li><span class="spec-label">Back &amp; Sides</span><span class="spec-value">Ebony</span></li>
+                <li><span class="spec-label">Neck</span><span class="spec-value">1 piece Queensland Maple</span></li>
+                <li><span class="spec-label">Fretboard</span><span class="spec-value">Ebony</span></li>
+                <li><span class="spec-label">Scale</span><span class="spec-value">648 mm</span></li>
+                <li><span class="spec-label">Finish</span><span class="spec-value">Satin Nitrocellulose</span></li>
+                <li><span class="spec-label">Rosette</span><span class="spec-value">Hand-inlaid purfling, Laser Craman signature</span></li>
+                <li><span class="spec-label">Status</span><span class="spec-value">Completed — for reference</span></li>
+              </ul>
+            </div>
+
+          </article>
+
+        </div><!-- end .catalogue-grid -->
+
+
+        <!-- Closing article -->
+        <article class="content-block" style="margin-top: 40px;">
+          <h2>More Builds Coming</h2>
+          <p>
+            Additional completed guitars and works-in-progress will be added to this
+            catalogue as they are completed. If you have seen a style or tonewood
+            combination you'd like to explore, reach out — every build conversation
+            begins with curiosity.
+          </p>
+          <div class="mt-lg"><a href="contact.html" class="btn btn-primary">Enquire About a Build</a></div>
+        </article>
+
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <div class="site-footer">
+      <div class="container">
+        <div class="footer-inner clearfix">
+          <div class="footer-col">
+            <span class="footer-brand-name">Craman Guitars</span>
+            <p class="footer-brand-desc">Handcrafted acoustic and electric guitars built to order in Derrinallum, Victoria, Australia.</p>
+          </div>
+          <div class="footer-col">
+            <h3>Pages</h3>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="catalogue.html">Catalogue</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="tel:0490553357">0490 553 357</a></li>
+              <li><a href="contact.html">Send an enquiry</a></li>
+              <li><span style="color: #9a9590; font-size: 14px;">Derrinallum, Victoria</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom clearfix">
+          <span>&copy; 2026 Craman Guitars. Craig Illman, Luthier.</span>
+          <span>Derrinallum, Victoria, Australia</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .page-wrapper -->
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

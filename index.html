@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!--
+  CRAMAN GUITARS — Home Page
+  File: index.html
+
+  FOR BEGINNERS — FILE PATHS FROM THIS PAGE:
+  This page is at the ROOT (top) of the site.
+  Links to other files go like this:
+    css/styles.css              (into the css folder)
+    images/guitars/juliette.jpg (into images, then guitars)
+    js/main.js                  (into the js folder)
+    pages/about.html            (into the pages folder)
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Craman Guitars — Handcrafted in Melbourne, Australia</title>
+  <meta name="description" content="Craman Guitars builds bespoke handcrafted acoustic and electric guitars in Melbourne, Australia. Featuring Huon pine soundboards and custom builds.">
+
+  <!-- Google Fonts — loads Cormorant Garamond, Source Sans 3, and Courier Prime -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- BACKGROUND GUITAR IMAGE - sits behind everything -->
+  <div class="page-background" aria-hidden="true">
+    <img src="images/guitars/juliette.jpg" alt="">
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <div class="site-nav">
+    <a href="index.html" class="nav-brand">
+      Craman Guitars
+      <span>Handcrafted Australian Guitars</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pages/catalogue.html">Catalogue</a></li>
+      <li><a href="pages/about.html">About</a></li>
+      <li><a href="pages/contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ALL VISIBLE PAGE CONTENT -->
+  <div class="page-wrapper">
+    <main>
+
+      <!-- HERO SECTION -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-content">
+
+            <p class="hero-eyebrow">Derrinallum, Victoria, Australia</p>
+
+            <h1 class="hero-title">
+              Instruments built for<br>
+              <em>those who hear</em><br>
+              the difference.
+            </h1>
+
+            <p class="hero-body">
+              Every Craman guitar begins as a conversation and ends as a singular object.
+              Handcrafted from Australian tonewoods — including the rare and resonant
+              Huon pine — each instrument is engineered to your playing style,
+              your sound, and your story.
+            </p>
+
+            <div>
+              <a href="pages/catalogue.html" class="btn btn-primary">View the Catalogue</a>
+              <a href="pages/contact.html" class="btn btn-secondary">Begin a Commission</a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      <!-- FEATURE ARTICLES -->
+      <section class="py-xl">
+        <div class="container">
+
+          <!-- Article 1: The Orchestra Model -->
+          <article class="content-block">
+            <h2>The Orchestra Model</h2>
+            <p>
+              The OM — Orchestra Model — is the jewel of the Craman catalogue.
+              Recognised by musicians and collectors alike for its exceptional
+              balance of warmth and projection, it is the shape that best expresses
+              what Craman guitars are: instruments of precision, patience, and soul.
+            </p>
+            <p>
+              <em>Juliette</em>, pictured throughout this site, is a perfect example:
+              a Huon pine soundboard over figured maple back and sides, with a maple
+              fretboard and hand-inlaid rosette. Every curve was plotted by hand.
+              Every join was fitted to within a fraction of a millimetre.
+            </p>
+          </article>
+
+          <!-- Article 2: Huon Pine -->
+          <article class="content-block">
+            <h2>Huon Pine — A Tonewood Like No Other</h2>
+            <p>
+              Sourced from the ancient cool temperate rainforests of south-west Tasmania,
+              Huon pine (<em>Lagarostrobos franklinii</em>) is one of the world's
+              slowest-growing conifers — some trees exceeding 10,000 years of age.
+              Its exceptionally tight, even grain and natural oil content produce a
+              tonewood of remarkable stability and tonal clarity.
+            </p>
+            <p>
+              The result in a guitar soundboard is a voice that is warm yet articulate —
+              with bell-like highs, a singing midrange, and a bass response that opens
+              up beautifully over years of play. No two Craman guitars with Huon pine
+              sound alike. That is the point.
+            </p>
+          </article>
+
+          <!-- Article 3: Built to You -->
+          <article class="content-block">
+            <h2>Built to You</h2>
+            <p>
+              A Craman commission begins with a conversation about how you play and
+              what you hear in your head. Scale length, nut width, body depth, bracing
+              pattern, finish, binding — every variable is discussed, modelled, and
+              agreed before a single piece of timber is cut.
+            </p>
+            <p>
+              The result is not a production instrument with your name on the label.
+              It is an instrument that could only have been built for you.
+            </p>
+            <div class="mt-lg">
+              <a href="pages/contact.html" class="btn btn-primary">Start the Conversation</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <div class="site-footer">
+      <div class="container">
+
+        <div class="footer-inner clearfix">
+
+          <div class="footer-col">
+            <span class="footer-brand-name">Craman Guitars</span>
+            <p class="footer-brand-desc">
+              Handcrafted acoustic and electric guitars built to order in
+              Derrinallum, Victoria, Australia.
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <h3>Pages</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="pages/catalogue.html">Catalogue</a></li>
+              <li><a href="pages/about.html">About Us</a></li>
+              <li><a href="pages/contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="tel:0490553357">0490 553 357</a></li>
+              <li><a href="pages/contact.html">Send an enquiry</a></li>
+              <li><span style="color: #9a9590; font-size: 14px;">Derrinallum, Victoria</span></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom clearfix">
+          <span>&copy; 2026 Craman Guitars. Craig Illman, Luthier.</span>
+          <span>Derrinallum, Victoria, Australia</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end .page-wrapper -->
+
+  <script src="js/main.js"></script>
+</body>
+</html>

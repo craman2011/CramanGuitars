@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<!--
+  CRAMAN GUITARS — Contact Page
+  File: pages/contact.html
+
+  TO MAKE THE FORM SEND EMAILS:
+  The form needs a free service like Formspree (formspree.io).
+  1. Sign up at formspree.io
+  2. Create a new form — you will get a URL like:
+       https://formspree.io/f/abcdef12
+  3. Replace action="#" below with that URL
+  Done — the form will now email you every submission.
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Craman Guitars</title>
+  <meta name="description" content="Get in touch with Craig Illman at Craman Guitars. Commission a handcrafted guitar or ask a question.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+  <!-- BACKGROUND GUITAR IMAGE -->
+  <div class="page-background" aria-hidden="true">
+    <img src="../images/guitars/juliette.jpg" alt="">
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <div class="site-nav">
+    <a href="index.html" class="nav-brand">
+      Craman Guitars
+      <span>Handcrafted Australian Guitars</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="catalogue.html">Catalogue</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-wrapper">
+    <main>
+      <div class="container">
+
+        <!-- Page heading -->
+        <div class="page-hero">
+          <p class="page-hero-eyebrow">Begin the Conversation</p>
+          <h1 class="page-hero-title">Contact Craig</h1>
+          <p class="page-hero-sub">
+            Every commission starts with a conversation. Whether you have a detailed
+            specification in mind or just a feeling about the sound you want —
+            reach out. There are no wrong questions.
+          </p>
+        </div>
+
+        <!-- How commissions work -->
+        <article class="content-block">
+          <h2>How a Commission Works</h2>
+          <p>
+            A typical commission begins with a conversation — in person, by phone,
+            or by email — about how you play, what you play, and what you are looking
+            for in an instrument. From there, Craig works through a specification with
+            you covering body shape, scale length, tonewoods, bracing pattern, neck
+            profile, nut width, finish, and any inlay or binding work.
+          </p>
+          <p>
+            Build times vary depending on complexity and current schedule. Craig will
+            advise an estimated timeframe at the point of commission. A deposit secures
+            your place in the queue and materials are sourced to your specification
+            before work begins.
+          </p>
+        </article>
+
+        <!-- Two-column layout: details left, form right -->
+        <div class="contact-layout clearfix">
+
+          <!-- Left column: contact details -->
+          <div class="contact-info">
+            <h2 class="section-title">Get in Touch</h2>
+
+            <div class="contact-detail">
+              <span class="contact-detail-label">Luthier</span>
+              <span class="contact-detail-value">Craig Illman</span>
+            </div>
+
+            <div class="contact-detail">
+              <span class="contact-detail-label">Phone</span>
+              <span class="contact-detail-value">
+                <a href="tel:0490553357">0490 553 357</a>
+              </span>
+            </div>
+
+            <div class="contact-detail">
+              <span class="contact-detail-label">Location</span>
+              <span class="contact-detail-value">
+                Derrinallum<br>Victoria, Australia
+              </span>
+            </div>
+
+            <div class="contact-detail">
+              <span class="contact-detail-label">Workshop</span>
+              <span class="contact-detail-value">
+                Home workshop — visits welcome by appointment
+              </span>
+            </div>
+
+            <div class="contact-detail">
+              <span class="contact-detail-label">Response</span>
+              <span class="contact-detail-value">
+                Craig aims to respond to all enquiries within 48 hours.
+              </span>
+            </div>
+
+            <!-- Nested article: what to include -->
+            <article class="content-block" style="margin-top: 32px;">
+              <h2>What to Include</h2>
+              <p>
+                If you already have ideas, feel free to share them — body style,
+                tonewoods you are drawn to, playing style (fingerstyle, flatpick,
+                classical), preferred scale length, or any guitars that have inspired
+                you. If you are not sure, that is fine too. Craig will guide you
+                through the options.
+              </p>
+            </article>
+          </div>
+
+          <!-- Right column: contact form -->
+          <div class="contact-form-col">
+            <h2 class="section-title">Send an Enquiry</h2>
+
+            <!-- Replace action="#" with your Formspree URL when ready -->
+            <form class="contact-form" action="#" method="POST">
+
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="e.g. Jane Smith" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone (optional)</label>
+                <input type="tel" id="phone" name="phone" placeholder="04xx xxx xxx">
+              </div>
+
+              <div class="form-group">
+                <label for="instrument">Instrument Type</label>
+                <select id="instrument" name="instrument">
+                  <option value="" disabled selected>Select an option</option>
+                  <option value="acoustic">Acoustic Guitar</option>
+                  <option value="electric">Electric Guitar</option>
+                  <option value="acoustic-electric">Acoustic-Electric</option>
+                  <option value="unsure">Not sure yet — let's talk</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Tell Craig About Your Dream Guitar</label>
+                <textarea id="message" name="message"
+                  placeholder="Describe what you're looking for — playing style, tonewoods you love, guitars that inspire you, or anything on your mind..."
+                  required></textarea>
+              </div>
+
+              <button type="submit" class="btn-submit">Send Enquiry</button>
+
+              <p style="margin-top: 12px; font-size: 12px; color: #9a9590; text-align: center;">
+                Your details will only be used to respond to your enquiry.
+              </p>
+
+            </form>
+          </div>
+
+        </div><!-- end .contact-layout -->
+
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <div class="site-footer">
+      <div class="container">
+        <div class="footer-inner clearfix">
+          <div class="footer-col">
+            <span class="footer-brand-name">Craman Guitars</span>
+            <p class="footer-brand-desc">Handcrafted acoustic and electric guitars built to order in Derrinallum, Victoria, Australia.</p>
+          </div>
+          <div class="footer-col">
+            <h3>Pages</h3>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="catalogue.html">Catalogue</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="tel:0490553357">0490 553 357</a></li>
+              <li><a href="contact.html">Send an enquiry</a></li>
+              <li><span style="color: #9a9590; font-size: 14px;">Derrinallum, Victoria</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom clearfix">
+          <span>&copy; 2026 Craman Guitars. Craig Illman, Luthier.</span>
+          <span>Derrinallum, Victoria, Australia</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .page-wrapper -->
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
