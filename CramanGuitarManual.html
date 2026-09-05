@@ -288,7 +288,7 @@
   }
   details.disclosure summary::-webkit-details-marker { display: none; }
   details.disclosure summary::before {
-    content: "?";
+    content: "▸";
     font-size: 11px;
     color: var(--ink-soft);
     transition: transform .15s ease;
@@ -358,23 +358,52 @@
   /* ---------- Task Tracker view ---------- */
   #tracker-view { display: none; }
   #tracker-view h1 { font-size: 30px; margin-bottom: 6px; }
-  #tracker-view .sub { color: var(--ink-soft); font-size: 14px; margin-bottom: 28px; }
+  #tracker-view .sub { color: var(--ink-soft); font-size: 13.5px; line-height: 1.5; margin-bottom: 18px; max-width: 68ch; }
+  .tracker-toolbar { display: flex; gap: 10px; margin-bottom: 24px; }
+  .tt-btn {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 3px;
+    border: 1px solid var(--walnut);
+    background: var(--walnut);
+    color: #fff;
+    cursor: pointer;
+  }
+  .tt-btn:hover { background: var(--walnut-deep); }
+  .tt-btn-secondary { background: transparent; color: var(--walnut-deep); }
+  .tt-btn-secondary:hover { background: rgba(138,90,52,0.1); }
+
   .tracker-lane { margin-bottom: 4px; border-radius: 4px; overflow: hidden; }
   .tracker-lane-head {
     padding: 9px 16px;
     font-weight: 600;
     font-size: 13.5px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+  }
+  .tracker-lane-head .tlh-name { flex: 1; }
+  .tracker-lane-head .tlh-progress { font-size: 12px; font-weight: 500; opacity: .85; white-space: nowrap; }
+  .sourcing-select, .status-select {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,.15);
+    background: #fff;
+    color: #1A1A1A;
   }
   .tracker-rows { list-style: none; margin: 0; padding: 0; }
   .tracker-rows li {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 12px;
-    padding: 8px 16px 8px 16px;
+    padding: 8px 16px;
     border-bottom: 1px solid var(--rule);
     background: var(--paper-raised);
+    flex-wrap: wrap;
   }
   .tracker-rows li .id-tag {
     font-family: 'IBM Plex Mono', monospace;
@@ -383,12 +412,34 @@
     width: 46px;
     flex-shrink: 0;
   }
-  .tracker-rows li a {
+  .tracker-rows li .tr-step-name {
     color: var(--ink);
     text-decoration: none;
     font-size: 14px;
+    flex: 1 1 220px;
+    min-width: 160px;
   }
-  .tracker-rows li a:hover { color: var(--blue); text-decoration: underline; }
+  .tracker-rows li .tr-step-name:hover { color: var(--blue); text-decoration: underline; }
+  .tracker-rows li .tr-deps {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    flex: 0 0 140px;
+  }
+  .tr-next {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .tr-next-ready { background: #C6EFCE; color: #006100; }
+  .tr-next-waiting { background: #FFF2CC; color: #7A5200; }
+  .tr-next-done { background: #EDEDED; color: #999; font-style: italic; }
+  .tr-next-progress { background: #DCEBFB; color: #1F4E78; }
+  .tr-next-na { background: #EFEFEF; color: #888; }
+  .tr-next-bought { background: #E3E3E3; color: #808080; font-style: italic; }
 </style>
 </head>
 <body>
@@ -396,7 +447,7 @@
 <nav id="sidebar">
   <div id="sidebar-head">
     <div class="brand">Craman Guitars</div>
-    <h1><a href="#" onclick="location.hash=''; showHome(); return false;">Build Reference</a></h1>
+    <h1><a href="#" id="home-link">Build Reference</a></h1>
   </div>
   <input id="search" type="text" placeholder="Find a process…">
   <a id="tracker-link" href="#tracker" class="tracker-nav-link">Task Tracker — view all steps</a>
@@ -451,14 +502,19 @@
 
   <div id="tracker-view">
     <h1>Task Tracker</h1>
-    <div class="sub">Every step, grouped by lane. Click a step to open its page.</div>
+    <div class="sub">Every step, grouped by lane. Click a step's name to open its page. Status and Sourcing are saved in this browser, on this computer, on this file — they won't sync back to your Excel file.</div>
+    <div class="tracker-toolbar">
+      <button id="tracker-export" class="tt-btn">Export progress (.json backup)</button>
+      <button id="tracker-import-btn" class="tt-btn tt-btn-secondary">Import progress</button>
+      <input id="tracker-import-file" type="file" accept="application/json" style="display:none;">
+    </div>
     <div id="tracker-body"></div>
   </div>
 </main>
 
 <script>
 const LANES = [["Truss Rod", "FFECF2F7"], ["Fretboard", "FFDFE8F2"], ["Neck Construction", "FFD1DFEC"], ["Soundboard", "FFC3D5E6"], ["Braces & Bridge Plate", "FFB6CCE1"], ["Rear Plate", "FFA8C3DB"], ["Sides & Bindings", "FF9AB9D6"], ["End Blocks & Linings", "FF8CB0D0"], ["Bridge", "FF7FA6CA"], ["Nut & Saddle", "FF719DC5"], ["Body Construction", "FF6393BF"], ["Body Assembly & Binding", "FF568ABA"], ["Neck Shaping & Finish", "FF4980B3"], ["Neck-to-Body Fitting (bolt-on)", "FF4376A5"], ["Final Assembly & Setup", "FF3E6C98"]];   // [ [laneName, hexColor], ... ]
-const STEPS = [["TR1", "Truss Rod", "Make truss rod nut & stop end"], ["TR2", "Truss Rod", "Cut and bend rod"], ["TR3", "Truss Rod", "Thread rod end"], ["TR4", "Truss Rod", "Assemble parts"], ["TR5", "Truss Rod", "Cover truss rod with heatshrink"], ["FB1", "Fretboard", "Plane blank flat and square edge"], ["FB2", "Fretboard", "Thickness blank"], ["FB3", "Fretboard", "Cut fret slots"], ["FB4", "Fretboard", "Radius fretboard"], ["FB5", "Fretboard", "Taper fretboard width"], ["FB6", "Fretboard", "Drill holes for fretboard markers"], ["FB7", "Fretboard", "Press in frets"], ["NK1", "Neck Construction", "Plane blank flat and square edge"], ["NK2", "Neck Construction", "Square the heel blank"], ["NK3", "Neck Construction", "Cut and glue Scaph joint"], ["NK4", "Neck Construction", "Glue on heel block"], ["NK5", "Neck Construction", "Cut truss rod groove"], ["NK6", "Neck Construction", "Cut neck tenon"], ["NK7", "Neck Construction", "Bandsaw heel profile"], ["NK8", "Neck Construction", "Taper Thickness"], ["NK9", "Neck Construction", "Thin headstock"], ["TP1", "Soundboard", "Bookmatch and Plane edge"], ["TP2", "Soundboard", "Reduce to max. even thickness"], ["TP3", "Soundboard", "Tap test & join soundboard plates"], ["TP4", "Soundboard", "Trim off rear graft"], ["TP5", "Soundboard", "Inlay rosette"], ["TP6", "Soundboard", "Plane to thickness, cut perimiter"], ["TP7", "Soundboard", "Reinforce sound hole & cut hole"], ["TP8", "Soundboard", "Fit and glue braces"], ["BR1", "Braces & Bridge Plate", "Cut brace material"], ["BR2", "Braces & Bridge Plate", "Shape and notch X Brace, ToneBars, finger bars"], ["BR3", "Braces & Bridge Plate", "Laminate falcate braces (optional)"], ["BR4", "Braces & Bridge Plate", "Shape/fit X braces, ToneBars, finger bars"], ["BB1", "Braces & Bridge Plate", "Shape back braces"], ["BB2", "Braces & Bridge Plate", "Shape base of braces"], ["BRP1", "Braces & Bridge Plate", "Cut Bridge plate blank"], ["BRP2", "Braces & Bridge Plate", "Shape bridge plate"], ["BP1", "Rear Plate", "Bookmatch and Plane edge"], ["BP2", "Rear Plate", "Plane to max. even thickness"], ["BP3", "Rear Plate", "Tap test"], ["BP4", "Rear Plate", "Join plates"], ["BP5", "Rear Plate", "Plane to target thickness"], ["BP6", "Rear Plate", "Cut panel to profile"], ["BP7", "Rear Plate", "Glue on & shape rear graft"], ["BP8", "Rear Plate", "Fit and glue back braces"], ["SB1", "Sides & Bindings", "Plane to thickness"], ["SB2", "Sides & Bindings", "Trim off bindings (optional)"], ["SB3", "Sides & Bindings", "Cut to side profile"], ["SB4", "Sides & Bindings", "Thin cutaway if required"], ["SB5", "Sides & Bindings", "Bend sides"], ["SB6", "Sides & Bindings", "Fit sides to mould"], ["SB7", "Sides & Bindings", "Bend purfling (optional)"], ["SB8", "Sides & Bindings", "Bend bindings"], ["EB1", "End Blocks & Linings", "Cut head block"], ["EB2", "End Blocks & Linings", "Shape head block"], ["EB3", "End Blocks & Linings", "Cut tail block"], ["EB4", "End Blocks & Linings", "Shape tail block"], ["EB5", "End Blocks & Linings", "Rout heel mortise in head block (optional)"], ["EB6", "End Blocks & Linings", "Cut lining blanks (optional)"], ["EB7", "End Blocks & Linings", "Kerf/bend linings (optional)"], ["BG1", "Bridge", "Cut bridge blank"], ["BG2", "Bridge", "Cut to profile"], ["BG3", "Bridge", "Drill bridge pin holes"], ["BG4", "Bridge", "Shape bridge wings"], ["BG5", "Bridge", "Shape top of bridge"], ["BG6", "Bridge", "Cut saddle slot"], ["BG7", "Bridge", "Countersink bridge pin holes"], ["BG8", "Bridge", "Polish bridge"], ["NS1", "Nut & Saddle", "Cut blanks"], ["NS2", "Nut & Saddle", "Shape saddle blank"], ["NS3", "Nut & Saddle", "Shape nut, mark string slots & polish"], ["NS4", "Nut & Saddle", "Shape compensated saddle"], ["NS5", "Nut & Saddle", "Polish saddle"], ["MA1", "Body Construction", "Fit & glue head & tail blocks"], ["MA2", "Body Construction", "Radius sides for top & back"], ["MA3", "Body Construction", "Fit & glue kerfed linings"], ["MA4", "Body Construction", "Make side splices"], ["MA5", "Body Construction", "Make mass blocks"], ["MA6", "Body Construction", "Glue mass blocks & side splices"], ["MA7", "Body Construction", "Radius top and back linings"], ["MA8", "Body Construction", "Notch lining for bracing"], ["MA9", "Body Construction", "Dry fit top and back"], ["MA10", "Body Assembly & Binding", "Glue on back panel & trim to profile"], ["MA11", "Body Assembly & Binding", "Check-fit top panel"], ["MA12", "Body Assembly & Binding", "Glue on top panel & trim to profile"], ["MA13", "Body Assembly & Binding", "Route binding channel"], ["MA14", "Body Assembly & Binding", "Bind body, fit butt strip"], ["MA15", "Body Assembly & Binding", "Rout heel mortise in body, with Jig (optional)"], ["MA16", "Body Assembly & Binding", "Sand, grain fill & finish body"], ["MA17", "Body Assembly & Binding", "Buff body"], ["MA18", "Neck Shaping & Finish", "Drill holes for tuners"], ["MA19", "Neck Shaping & Finish", "Assemble neck, rod & fretboard"], ["MA20", "Neck Shaping & Finish", "Carve neck"], ["MA21", "Neck Shaping & Finish", "Make heel cap"], ["MA22", "Neck Shaping & Finish", "Fit and glue heel cap"], ["MA23", "Neck Shaping & Finish", "Fit and glue fret markers"], ["MA24", "Neck Shaping & Finish", "Sand, grain fill & finish neck"], ["MA25", "Neck Shaping & Finish", "Buff neck, fit tuners"], ["NB1", "Neck-to-Body Fitting (bolt-on)", "Laminate head & shape"], ["NB2", "Neck-to-Body Fitting (bolt-on)", "Drill for tuners"], ["NB3", "Neck-to-Body Fitting (bolt-on)", "Pre-carve heel (template)"], ["NB4", "Neck-to-Body Fitting (bolt-on)", "Pre-fit neck angles (template)"], ["NB5", "Neck-to-Body Fitting (bolt-on)", "Make bolt bar for heel"], ["NB6", "Neck-to-Body Fitting (bolt-on)", "Fit neck, adjust pitch & yaw"], ["FA1", "Final Assembly & Setup", "Fix neck to body"], ["FA2", "Final Assembly & Setup", "Check pitch, yaw angles"], ["FA3", "Final Assembly & Setup", "Scrape bridge area"], ["FA4", "Final Assembly & Setup", "Glue on bridge"], ["FA5", "Final Assembly & Setup", "Fit nut"], ["FA6", "Final Assembly & Setup", "Fit saddle"], ["FA7", "Final Assembly & Setup", "String guitar"], ["FA8", "Final Assembly & Setup", "Set relief using truss rod"], ["FA9", "Final Assembly & Setup", "Set action at nut and saddle"], ["FA10", "Final Assembly & Setup", "Set intonation"], ["FA11", "Final Assembly & Setup", "Tune and play"], ["FA12", "Final Assembly & Setup", "Assess acoustic function"], ["FA13", "Final Assembly & Setup", "Optimise acoustic parameters"]];    // [ [id, laneName, stepName], ... ]
+const STEPS = [["TR1", "Truss Rod", "Make truss rod nut & stop end", []], ["TR2", "Truss Rod", "Cut and bend rod", ["TR1"]], ["TR3", "Truss Rod", "Thread rod end", ["TR2"]], ["TR4", "Truss Rod", "Assemble parts", ["TR3"]], ["TR5", "Truss Rod", "Cover truss rod with heatshrink", ["TR4"]], ["FB1", "Fretboard", "Plane blank flat and square edge", []], ["FB2", "Fretboard", "Thickness blank", ["FB1"]], ["FB3", "Fretboard", "Cut fret slots", ["FB2"]], ["FB4", "Fretboard", "Radius fretboard", ["FB3"]], ["FB5", "Fretboard", "Taper fretboard width", ["FB4"]], ["FB6", "Fretboard", "Drill holes for fretboard markers", ["FB5"]], ["FB7", "Fretboard", "Press in frets", ["FB6"]], ["NK1", "Neck Construction", "Plane blank flat and square edge", []], ["NK2", "Neck Construction", "Square the heel blank", ["NK1"]], ["NK3", "Neck Construction", "Cut and glue Scaph joint", ["NK2"]], ["NK4", "Neck Construction", "Glue on heel block", ["NK3"]], ["NK5", "Neck Construction", "Cut truss rod groove", ["NK4"]], ["NK6", "Neck Construction", "Cut neck tenon", ["NK5"]], ["NK7", "Neck Construction", "Bandsaw heel profile", ["NK6"]], ["NK8", "Neck Construction", "Taper Thickness", ["NK7"]], ["NK9", "Neck Construction", "Thin headstock", ["NK8"]], ["TP1", "Soundboard", "Bookmatch and Plane edge", []], ["TP2", "Soundboard", "Reduce to max. even thickness", ["TP1"]], ["TP3", "Soundboard", "Tap test & join soundboard plates", ["TP2"]], ["TP4", "Soundboard", "Trim off rear graft", ["TP3"]], ["TP5", "Soundboard", "Inlay rosette", ["TP4"]], ["TP6", "Soundboard", "Plane to thickness, cut perimiter", ["TP5"]], ["TP7", "Soundboard", "Reinforce sound hole & cut hole", ["TP6"]], ["TP8", "Soundboard", "Fit and glue braces", ["TP7", "BR4", "BRP2"]], ["BR1", "Braces & Bridge Plate", "Cut brace material", []], ["BR2", "Braces & Bridge Plate", "Shape and notch X Brace, ToneBars, finger bars", ["BR1"]], ["BR3", "Braces & Bridge Plate", "Laminate falcate braces (optional)", ["BR2"]], ["BR4", "Braces & Bridge Plate", "Shape/fit X braces, ToneBars, finger bars", ["BR3"]], ["BB1", "Braces & Bridge Plate", "Shape back braces", ["BR1"]], ["BB2", "Braces & Bridge Plate", "Shape base of braces", ["BB1"]], ["BRP1", "Braces & Bridge Plate", "Cut Bridge plate blank", []], ["BRP2", "Braces & Bridge Plate", "Shape bridge plate", ["BRP1"]], ["BP1", "Rear Plate", "Bookmatch and Plane edge", []], ["BP2", "Rear Plate", "Plane to max. even thickness", ["BP1"]], ["BP3", "Rear Plate", "Tap test", ["BP2"]], ["BP4", "Rear Plate", "Join plates", ["BP3"]], ["BP5", "Rear Plate", "Plane to target thickness", ["BP4"]], ["BP6", "Rear Plate", "Cut panel to profile", ["BP5"]], ["BP7", "Rear Plate", "Glue on & shape rear graft", ["BP6"]], ["BP8", "Rear Plate", "Fit and glue back braces", ["BP7", "BB2"]], ["SB1", "Sides & Bindings", "Plane to thickness", []], ["SB2", "Sides & Bindings", "Trim off bindings (optional)", ["SB1"]], ["SB3", "Sides & Bindings", "Cut to side profile", ["SB2"]], ["SB4", "Sides & Bindings", "Thin cutaway if required", ["SB3"]], ["SB5", "Sides & Bindings", "Bend sides", ["SB4"]], ["SB6", "Sides & Bindings", "Fit sides to mould", ["SB5"]], ["SB7", "Sides & Bindings", "Bend purfling (optional)", ["SB4"]], ["SB8", "Sides & Bindings", "Bend bindings", ["SB7"]], ["EB1", "End Blocks & Linings", "Cut head block", []], ["EB2", "End Blocks & Linings", "Shape head block", ["EB1"]], ["EB3", "End Blocks & Linings", "Cut tail block", ["EB2"]], ["EB4", "End Blocks & Linings", "Shape tail block", ["EB3"]], ["EB5", "End Blocks & Linings", "Rout heel mortise in head block (optional)", ["EB4"]], ["EB6", "End Blocks & Linings", "Cut lining blanks (optional)", ["EB5"]], ["EB7", "End Blocks & Linings", "Kerf/bend linings (optional)", ["EB6"]], ["BG1", "Bridge", "Cut bridge blank", []], ["BG2", "Bridge", "Cut to profile", ["BG1"]], ["BG3", "Bridge", "Drill bridge pin holes", ["BG2"]], ["BG4", "Bridge", "Shape bridge wings", ["BG3"]], ["BG5", "Bridge", "Shape top of bridge", ["BG4"]], ["BG6", "Bridge", "Cut saddle slot", ["BG5"]], ["BG7", "Bridge", "Countersink bridge pin holes", ["BG6"]], ["BG8", "Bridge", "Polish bridge", ["BG7"]], ["NS1", "Nut & Saddle", "Cut blanks", []], ["NS2", "Nut & Saddle", "Shape saddle blank", ["NS1"]], ["NS3", "Nut & Saddle", "Shape nut, mark string slots & polish", ["NS2"]], ["NS4", "Nut & Saddle", "Shape compensated saddle", ["NS1"]], ["NS5", "Nut & Saddle", "Polish saddle", ["NS4"]], ["MA1", "Body Construction", "Fit & glue head & tail blocks", ["EB4"]], ["MA2", "Body Construction", "Radius sides for top & back", ["MA1", "SB6"]], ["MA3", "Body Construction", "Fit & glue kerfed linings", ["MA2", "EB7"]], ["MA4", "Body Construction", "Make side splices", ["MA3"]], ["MA5", "Body Construction", "Make mass blocks", []], ["MA6", "Body Construction", "Glue mass blocks & side splices", ["MA4", "MA5"]], ["MA7", "Body Construction", "Radius top and back linings", ["MA6"]], ["MA8", "Body Construction", "Notch lining for bracing", ["MA7"]], ["MA9", "Body Construction", "Dry fit top and back", ["MA8", "TP8", "BP8"]], ["MA10", "Body Assembly & Binding", "Glue on back panel & trim to profile", ["MA9"]], ["MA11", "Body Assembly & Binding", "Check-fit top panel", ["MA10"]], ["MA12", "Body Assembly & Binding", "Glue on top panel & trim to profile", ["MA11"]], ["MA13", "Body Assembly & Binding", "Route binding channel", ["MA12"]], ["MA14", "Body Assembly & Binding", "Bind body, fit butt strip", ["MA13", "SB8"]], ["MA15", "Body Assembly & Binding", "Rout heel mortise in body, with Jig (optional)", ["MA14"]], ["MA16", "Body Assembly & Binding", "Sand, grain fill & finish body", ["MA15"]], ["MA17", "Body Assembly & Binding", "Buff body", ["MA16"]], ["MA18", "Neck Shaping & Finish", "Drill holes for tuners", ["NK9"]], ["MA19", "Neck Shaping & Finish", "Assemble neck, rod & fretboard", ["TR5", "FB7", "NK9", "MA18", "NB1"]], ["MA20", "Neck Shaping & Finish", "Carve neck", ["MA19"]], ["MA21", "Neck Shaping & Finish", "Make heel cap", ["MA20"]], ["MA22", "Neck Shaping & Finish", "Fit and glue heel cap", ["MA21"]], ["MA23", "Neck Shaping & Finish", "Fit and glue fret markers", ["MA22"]], ["MA24", "Neck Shaping & Finish", "Sand, grain fill & finish neck", ["MA23"]], ["MA25", "Neck Shaping & Finish", "Buff neck, fit tuners", ["MA24"]], ["NB1", "Neck-to-Body Fitting (bolt-on)", "Laminate head & shape", ["NK3"]], ["NB2", "Neck-to-Body Fitting (bolt-on)", "Drill for tuners", ["NB1"]], ["NB3", "Neck-to-Body Fitting (bolt-on)", "Pre-carve heel (template)", ["NB2", "NK9"]], ["NB4", "Neck-to-Body Fitting (bolt-on)", "Pre-fit neck angles (template)", ["NB3"]], ["NB5", "Neck-to-Body Fitting (bolt-on)", "Make bolt bar for heel", []], ["NB6", "Neck-to-Body Fitting (bolt-on)", "Fit neck, adjust pitch & yaw", ["NB4", "NB5", "MA15"]], ["FA1", "Final Assembly & Setup", "Fix neck to body", ["MA25", "MA17", "NB6"]], ["FA2", "Final Assembly & Setup", "Check pitch, yaw angles", ["FA1"]], ["FA3", "Final Assembly & Setup", "Scrape bridge area", ["FA2"]], ["FA4", "Final Assembly & Setup", "Glue on bridge", ["FA3", "BG8"]], ["FA5", "Final Assembly & Setup", "Fit nut", ["FA4", "NS3"]], ["FA6", "Final Assembly & Setup", "Fit saddle", ["FA5", "NS5"]], ["FA7", "Final Assembly & Setup", "String guitar", ["FA6"]], ["FA8", "Final Assembly & Setup", "Set relief using truss rod", ["FA7"]], ["FA9", "Final Assembly & Setup", "Set action at nut and saddle", ["FA8"]], ["FA10", "Final Assembly & Setup", "Set intonation", ["FA9"]], ["FA11", "Final Assembly & Setup", "Tune and play", ["FA10"]], ["FA12", "Final Assembly & Setup", "Assess acoustic function", ["FA11"]], ["FA13", "Final Assembly & Setup", "Optimise acoustic parameters", ["FA12"]]];   // [ [id, laneName, stepName, [depIds]], ... ]
 
 // The one prototype write-up. Everything else shows the "not recorded yet" state.
 // summary[].t accepts "mm:ss" or plain seconds — clicking a summary line seeks the video to that point.
@@ -519,7 +575,7 @@ LANES.forEach(([name,hex])=>{ laneColor[name] = '#'+hex.slice(2); });
 
 const stepsByLane = {};
 LANES.forEach(([name])=> stepsByLane[name]=[]);
-STEPS.forEach(([id,lane,name])=> stepsByLane[lane].push({id,name}));
+STEPS.forEach(([id,lane,name,deps])=> stepsByLane[lane].push({id,name,deps: deps||[]}));
 
 const laneListEl = document.getElementById('lane-list');
 LANES.forEach(([laneName,hex])=>{
@@ -530,7 +586,7 @@ LANES.forEach(([laneName,hex])=>{
 
   const head = document.createElement('button');
   head.className = 'lane-head';
-  head.innerHTML = `<span>${laneName}</span><span class="lane-count">${stepsByLane[laneName].length}</span><span class="chev">?</span>`;
+  head.innerHTML = `<span>${laneName}</span><span class="lane-count">${stepsByLane[laneName].length}</span><span class="chev">▸</span>`;
   head.addEventListener('click', ()=> laneEl.classList.toggle('open'));
   laneEl.appendChild(head);
 
@@ -546,38 +602,143 @@ LANES.forEach(([laneName,hex])=>{
   laneListEl.appendChild(laneEl);
 });
 
-const depsIndex = {}; // not wired to real dependency data in this prototype
+const depsIndex = {}; // (unused, kept for compatibility)
 
-const trackerBody = document.getElementById('tracker-body');
-LANES.forEach(([laneName,hex])=>{
-  const color = laneColor[laneName];
-  const laneDiv = document.createElement('div');
-  laneDiv.className = 'tracker-lane';
+// ---------- Interactive Task Tracker — state saved in THIS browser, for THIS file path only ----------
+const TRACKER_STORAGE_KEY = 'cramanTrackerState_v1';
 
-  const head = document.createElement('div');
-  head.className = 'tracker-lane-head';
-  head.style.background = color;
-  head.style.color = (laneColor[laneName] && LANE_TEXT_ON(laneName)) ? '#fff' : '#1A1A1A';
-  head.innerHTML = `<span>${laneName}</span><span>${stepsByLane[laneName].length} steps</span>`;
-  laneDiv.appendChild(head);
+function loadTrackerState(){
+  try {
+    const raw = localStorage.getItem(TRACKER_STORAGE_KEY);
+    if(raw) return JSON.parse(raw);
+  } catch(e){ /* localStorage unavailable — state just won't persist */ }
+  return { status: {}, sourcing: {} };
+}
+function saveTrackerState(){
+  try { localStorage.setItem(TRACKER_STORAGE_KEY, JSON.stringify(trackerState)); }
+  catch(e){ console.warn('Could not save tracker progress:', e); }
+}
+let trackerState = loadTrackerState();
 
-  const ul = document.createElement('ul');
-  ul.className = 'tracker-rows';
-  stepsByLane[laneName].forEach(({id,name})=>{
-    const li = document.createElement('li');
-    li.innerHTML = `<span class="id-tag">${id}</span><a href="#${id}">${name}</a>`;
-    ul.appendChild(li);
-  });
-  laneDiv.appendChild(ul);
-  trackerBody.appendChild(laneDiv);
-});
+function getStatus(id){ return trackerState.status[id] || 'Not Started'; }
+function getSourcing(lane){ return trackerState.sourcing[lane] || 'Building this myself'; }
+function idToLane(id){ const s = STEPS.find(s=>s[0]===id); return s ? s[1] : null; }
+
+function depSatisfied(depId){
+  const st = getStatus(depId);
+  if(st === 'Done' || st === 'N/A') return true;
+  const lane = idToLane(depId);
+  return lane ? getSourcing(lane) === 'Buying pre-made' : false;
+}
+
+function computeNext(id, lane, deps){
+  if(getSourcing(lane) === 'Buying pre-made') return {text:'\uD83D\uDED2 Bought \u2014 step skipped', cls:'bought'};
+  const status = getStatus(id);
+  if(status === 'Done') return {text:'\u2714 Done', cls:'done'};
+  if(status === 'In Progress') return {text:'\u25B6 In Progress', cls:'progress'};
+  if(status === 'N/A') return {text:'\u2013 N/A', cls:'na'};
+  const allOk = deps.every(depSatisfied);
+  return allOk ? {text:'\u2705 Ready to start', cls:'ready'} : {text:'\u23F3 Waiting on prerequisites', cls:'waiting'};
+}
 
 function LANE_TEXT_ON(laneName){
-  // reuse the same lightness threshold the sidebar/step colours use
   const idx = LANES.findIndex(l=>l[0]===laneName);
   const t = LANES.length>1 ? idx/(LANES.length-1) : 0;
   return t > 0.55;
 }
+
+const trackerBody = document.getElementById('tracker-body');
+
+function renderTracker(){
+  trackerBody.innerHTML = '';
+  LANES.forEach(([laneName])=>{
+    const color = laneColor[laneName];
+    const textOn = LANE_TEXT_ON(laneName);
+    const steps = stepsByLane[laneName];
+    const sourcing = getSourcing(laneName);
+    const doneCount = steps.filter(s=>getStatus(s.id)==='Done').length;
+
+    const laneDiv = document.createElement('div');
+    laneDiv.className = 'tracker-lane';
+
+    const head = document.createElement('div');
+    head.className = 'tracker-lane-head';
+    head.style.background = color;
+    head.style.color = textOn ? '#fff' : '#1A1A1A';
+    head.innerHTML =
+      '<span class="tlh-name">'+laneName+'</span>'+
+      '<select data-lane="'+laneName+'" class="sourcing-select">'+
+        '<option value="Building this myself"'+(sourcing==='Building this myself'?' selected':'')+'>Building this myself</option>'+
+        '<option value="Buying pre-made"'+(sourcing==='Buying pre-made'?' selected':'')+'>Buying pre-made</option>'+
+      '</select>'+
+      '<span class="tlh-progress">'+(sourcing==='Buying pre-made' ? '\uD83D\uDED2 Sourced externally' : doneCount+' / '+steps.length+' done')+'</span>';
+    laneDiv.appendChild(head);
+
+    const ul = document.createElement('ul');
+    ul.className = 'tracker-rows';
+    steps.forEach(({id,name,deps})=>{
+      const status = getStatus(id);
+      const next = computeNext(id, laneName, deps);
+      const depsText = deps.length ? deps.join(', ') : '\u2014 start step';
+      const li = document.createElement('li');
+      li.innerHTML =
+        '<span class="id-tag">'+id+'</span>'+
+        '<a href="#'+id+'" class="tr-step-name">'+name+'</a>'+
+        '<span class="tr-deps">'+depsText+'</span>'+
+        '<select data-id="'+id+'" class="status-select">'+
+          '<option value="Not Started"'+(status==='Not Started'?' selected':'')+'>Not Started</option>'+
+          '<option value="In Progress"'+(status==='In Progress'?' selected':'')+'>In Progress</option>'+
+          '<option value="Done"'+(status==='Done'?' selected':'')+'>Done</option>'+
+          '<option value="N/A"'+(status==='N/A'?' selected':'')+'>N/A</option>'+
+        '</select>'+
+        '<span class="tr-next tr-next-'+next.cls+'">'+next.text+'</span>';
+      ul.appendChild(li);
+    });
+    laneDiv.appendChild(ul);
+    trackerBody.appendChild(laneDiv);
+  });
+
+  trackerBody.querySelectorAll('select.status-select').forEach(sel=>{
+    sel.addEventListener('change', ()=>{
+      trackerState.status[sel.dataset.id] = sel.value;
+      saveTrackerState();
+      renderTracker();
+    });
+  });
+  trackerBody.querySelectorAll('select.sourcing-select').forEach(sel=>{
+    sel.addEventListener('change', ()=>{
+      trackerState.sourcing[sel.dataset.lane] = sel.value;
+      saveTrackerState();
+      renderTracker();
+    });
+  });
+}
+renderTracker();
+
+document.getElementById('tracker-export').addEventListener('click', ()=>{
+  const blob = new Blob([JSON.stringify(trackerState, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'craman-tracker-progress.json';
+  a.click();
+});
+document.getElementById('tracker-import-btn').addEventListener('click', ()=>{
+  document.getElementById('tracker-import-file').click();
+});
+document.getElementById('tracker-import-file').addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    try {
+      const data = JSON.parse(reader.result);
+      trackerState = { status: data.status||{}, sourcing: data.sourcing||{} };
+      saveTrackerState();
+      renderTracker();
+    } catch(err){ alert("That file doesn't look like a valid progress export."); }
+  };
+  reader.readAsText(file);
+});
 
 function hideAllViews(){
   document.getElementById('home-view').style.display = 'none';
@@ -676,6 +837,23 @@ function route(){
   else showHome();
 }
 window.addEventListener('hashchange', route);
+
+// Handle every internal '#...' link ourselves — clicking a plain <a href="#...">
+// on a file:// page can trip Chrome/Edge's "file: URLs are unique security
+// origins" check (especially when re-clicking the hash you're already on),
+// which silently blocks the navigation. Doing it in script avoids that entirely.
+document.addEventListener('click', function(e){
+  const a = e.target.closest('a[href^="#"]');
+  if(!a) return;
+  e.preventDefault();
+  const target = a.getAttribute('href').slice(1); // '', 'tracker', or a step ID
+  if(location.hash.replace('#','') === target){
+    route(); // already on this hash — hashchange won't fire, so render directly
+  } else {
+    location.hash = target;
+  }
+});
+
 route();
 
 document.getElementById('search').addEventListener('input', (e)=>{
