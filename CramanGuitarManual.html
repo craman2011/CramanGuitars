@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Craman Guitars — Build Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F1EBDD;
+    --paper-raised: #FAF7EF;
+    --ink: #2B2620;
+    --ink-soft: #6B6255;
+    --walnut: #8A5A34;
+    --walnut-deep: #6E4626;
+    --rule: #DCD2BC;
+    --blue: #3E6C98;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    display: flex;
+    min-height: 100vh;
+  }
+  h1, h2, h3 { font-family: 'Source Serif 4', serif; font-weight: 600; margin: 0; }
+
+  /* ---------- Sidebar ---------- */
+  #sidebar {
+    width: 300px;
+    flex-shrink: 0;
+    background: var(--paper-raised);
+    border-right: 1px solid var(--rule);
+    height: 100vh;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+  }
+  #sidebar-head {
+    padding: 22px 20px 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  #sidebar-head .brand {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--walnut-deep);
+    letter-spacing: .01em;
+  }
+  #sidebar-head h1 {
+    font-size: 21px;
+    line-height: 1.25;
+    margin-top: 4px;
+  }
+  #sidebar-head h1 a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #sidebar-head h1 a:hover { color: var(--walnut-deep); }
+  #search {
+    margin: 14px 20px 6px;
+    width: calc(100% - 40px);
+    padding: 8px 10px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    background: #fff;
+    color: var(--ink);
+  }
+  #search:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
+
+  .tracker-nav-link {
+    display: block;
+    margin: 4px 20px 14px;
+    padding: 9px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--walnut-deep);
+    background: rgba(138,90,52,0.08);
+    border: 1px solid rgba(138,90,52,0.25);
+    border-radius: 3px;
+    text-decoration: none;
+    text-align: center;
+  }
+  .tracker-nav-link:hover { background: rgba(138,90,52,0.15); }
+  .tracker-nav-link.active { background: var(--walnut); color: #fff; border-color: var(--walnut); }
+
+  .lane {
+    border-bottom: 1px solid var(--rule);
+  }
+  .lane-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 20px;
+    background: none;
+    border: none;
+    border-left: 5px solid var(--lane-color);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--ink);
+    cursor: pointer;
+    text-align: left;
+  }
+  .lane-head:hover { background: rgba(0,0,0,0.03); }
+  .lane-head .chev {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--ink-soft);
+    transition: transform .15s ease;
+  }
+  .lane.open .lane-head .chev { transform: rotate(90deg); }
+  .lane-count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 2px 0 8px;
+    display: none;
+  }
+  .lane.open .steps { display: block; }
+  .steps li a {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    padding: 6px 20px 6px 30px;
+    font-size: 13px;
+    color: var(--ink);
+    text-decoration: none;
+    border-left: 5px solid transparent;
+  }
+  .steps li a:hover { background: rgba(0,0,0,0.035); }
+  .steps li a.active {
+    background: rgba(0,0,0,0.05);
+    border-left: 5px solid var(--lane-color);
+    font-weight: 600;
+  }
+  .steps li a .id-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+  }
+  .steps li a .has-video::after {
+    content: "";
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--walnut);
+    display: inline-block;
+    margin-left: 4px;
+  }
+
+  /* ---------- Main content ---------- */
+  #main {
+    flex: 1;
+    min-width: 0;
+    padding: 48px 56px 80px;
+    max-width: 780px;
+  }
+  #home-view .kicker {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    color: var(--walnut-deep);
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  #home-view h1 { font-size: 34px; line-height: 1.15; max-width: 14ch; }
+  #home-view p { line-height: 1.65; color: var(--ink-soft); max-width: 62ch; font-size: 15px; }
+  #home-view .howto {
+    margin-top: 34px;
+    padding: 20px 24px;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  #home-view .howto code {
+    font-family: 'IBM Plex Mono', monospace;
+    background: rgba(0,0,0,.05);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12.5px;
+  }
+
+  #step-view { display: none; }
+  #step-view .step-lane {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-transform: none;
+    color: var(--lane-color-dark, var(--blue));
+    margin-bottom: 6px;
+  }
+  #step-view h1 {
+    font-size: 30px;
+    line-height: 1.2;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  #step-view h1 .id-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 2px 7px;
+  }
+  .video-frame {
+    margin-top: 26px;
+    aspect-ratio: 16/9;
+    background: #1E1B17;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+  }
+  .video-frame video { width: 100%; height: 100%; display: block; }
+  .video-empty {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px;
+    color: #C9C2B4;
+    font-size: 13.5px;
+    text-align: center;
+    padding: 0 40px;
+  }
+  .video-empty .filename {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: #fff;
+    background: rgba(255,255,255,.08);
+    padding: 3px 9px;
+    border-radius: 3px;
+  }
+  .highlights {
+    margin-top: 30px;
+    padding: 4px 0 4px 20px;
+    border-left: 3px solid var(--walnut);
+  }
+  .highlights ul { margin: 0; padding: 0; list-style: none; }
+  .highlights li {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--walnut-deep);
+    margin-bottom: 10px;
+  }
+  .highlights li:last-child { margin-bottom: 0; }
+  .highlights.empty li {
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+
+  details.disclosure {
+    margin-top: 22px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: var(--paper-raised);
+  }
+  details.disclosure + details.disclosure { margin-top: 14px; }
+  details.disclosure summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 13px 18px;
+    font-weight: 600;
+    font-size: 14.5px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  details.disclosure summary::-webkit-details-marker { display: none; }
+  details.disclosure summary::before {
+    content: "▸";
+    font-size: 11px;
+    color: var(--ink-soft);
+    transition: transform .15s ease;
+  }
+  details.disclosure[open] summary::before { transform: rotate(90deg); }
+  details.disclosure .disclosure-body {
+    padding: 2px 20px 18px;
+  }
+
+  .summary-overview {
+    padding: 4px 0 4px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+  .summary-list { margin: 0; padding: 0; list-style: none; }
+  .summary-list li { border-top: 1px solid var(--rule); }
+  .summary-list li:first-child { border-top: none; }
+  .summary-list button.jump {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 11px 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14.5px;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .summary-list button.jump:hover .summary-label { color: var(--blue); text-decoration: underline; }
+  .summary-list .time-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: #fff;
+    background: var(--walnut);
+    border-radius: 3px;
+    padding: 2px 7px;
+    flex-shrink: 0;
+  }
+  .summary-list .summary-label { line-height: 1.5; }
+
+  .transcript-body {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--ink);
+    max-width: 68ch;
+    white-space: pre-wrap;
+  }
+  .empty-note {
+    color: var(--ink-soft);
+    font-style: italic;
+    font-family: 'Source Serif 4', serif;
+    font-size: 14px;
+  }
+  .depends {
+    margin-top: 34px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .depends a { color: var(--blue); }
+
+  /* ---------- Task Tracker view ---------- */
+  #tracker-view { display: none; }
+  #tracker-view h1 { font-size: 30px; margin-bottom: 6px; }
+  #tracker-view .sub { color: var(--ink-soft); font-size: 14px; margin-bottom: 28px; }
+  .tracker-lane { margin-bottom: 4px; border-radius: 4px; overflow: hidden; }
+  .tracker-lane-head {
+    padding: 9px 16px;
+    font-weight: 600;
+    font-size: 13.5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tracker-rows { list-style: none; margin: 0; padding: 0; }
+  .tracker-rows li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 8px 16px 8px 16px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper-raised);
+  }
+  .tracker-rows li .id-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    width: 46px;
+    flex-shrink: 0;
+  }
+  .tracker-rows li a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .tracker-rows li a:hover { color: var(--blue); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<nav id="sidebar">
+  <div id="sidebar-head">
+    <div class="brand">Craman Guitars</div>
+    <h1><a href="#" onclick="location.hash=''; showHome(); return false;">Build Reference</a></h1>
+  </div>
+  <input id="search" type="text" placeholder="Find a process…">
+  <a id="tracker-link" href="#tracker" class="tracker-nav-link">Task Tracker — view all steps</a>
+  <div id="lane-list"></div>
+</nav>
+
+<main id="main">
+  <div id="home-view">
+    <div class="kicker">Steel‑String Acoustic</div>
+    <h1>The build, step by step</h1>
+    <p>Pick a process from the list to see its video and notes. This mirrors the Task Tracker sheet exactly — same lanes, same order, same colour down the side.</p>
+    <div class="howto">
+      Drop a video for any step into the <code>video</code> folder next to this page, named after the step's code — for <strong>Shape compensated saddle</strong> that's <code>video/NS4.mp4</code>. It'll show up here automatically next time you open the page. From the spreadsheet, paste this page's address plus <code>#NS4</code> into that step's Reference Link cell to jump straight here.
+    </div>
+  </div>
+
+  <article id="step-view">
+    <div class="step-lane" id="sv-lane"></div>
+    <h1 id="sv-title"><span id="sv-name"></span><span class="id-tag" id="sv-id"></span></h1>
+    <div class="video-frame">
+      <video id="sv-video" controls playsinline></video>
+      <div class="video-empty" id="sv-video-empty" style="display:none;">
+        <div>No video yet</div>
+        <div class="filename" id="sv-filename"></div>
+      </div>
+    </div>
+    <div class="highlights" id="sv-highlights"></div>
+
+    <details class="disclosure" id="sv-summary-details">
+      <summary>Summary</summary>
+      <div class="disclosure-body">
+        <div class="summary-overview" id="sv-summary-overview"></div>
+        <ul class="summary-list" id="sv-summary-list"></ul>
+      </div>
+    </details>
+
+    <details class="disclosure" id="sv-transcript-details">
+      <summary>Process Notes</summary>
+      <div class="disclosure-body">
+        <div class="transcript-body" id="sv-transcript"></div>
+      </div>
+    </details>
+
+    <div class="depends" id="sv-depends"></div>
+  </article>
+
+  <div id="tracker-view">
+    <h1>Task Tracker</h1>
+    <div class="sub">Every step, grouped by lane. Click a step to open its page.</div>
+    <div id="tracker-body"></div>
+  </div>
+</main>
+
+<script>
+const LANES = [["Truss Rod", "FFECF2F7"], ["Fretboard", "FFDFE8F2"], ["Neck Construction", "FFD1DFEC"], ["Soundboard", "FFC3D5E6"], ["Braces & Bridge Plate", "FFB6CCE1"], ["Rear Plate", "FFA8C3DB"], ["Sides & Bindings", "FF9AB9D6"], ["End Blocks & Linings", "FF8CB0D0"], ["Bridge", "FF7FA6CA"], ["Nut & Saddle", "FF719DC5"], ["Body Construction", "FF6393BF"], ["Body Assembly & Binding", "FF568ABA"], ["Neck Shaping & Finish", "FF4980B3"], ["Neck-to-Body Fitting (bolt-on)", "FF4376A5"], ["Final Assembly & Setup", "FF3E6C98"]];   // [ [laneName, hexColor], ... ]
+const STEPS = [["TR1", "Truss Rod", "Make truss rod nut & stop end"], ["TR2", "Truss Rod", "Cut and bend rod"], ["TR3", "Truss Rod", "Thread rod end"], ["TR4", "Truss Rod", "Assemble parts"], ["TR5", "Truss Rod", "Cover truss rod with heatshrink"], ["FB1", "Fretboard", "Plane blank flat and square edge"], ["FB2", "Fretboard", "Thickness blank"], ["FB3", "Fretboard", "Cut fret slots"], ["FB4", "Fretboard", "Radius fretboard"], ["FB5", "Fretboard", "Taper fretboard width"], ["FB6", "Fretboard", "Drill holes for fretboard markers"], ["FB7", "Fretboard", "Press in frets"], ["NK1", "Neck Construction", "Plane blank flat and square edge"], ["NK2", "Neck Construction", "Square the heel blank"], ["NK3", "Neck Construction", "Cut and glue Scaph joint"], ["NK4", "Neck Construction", "Glue on heel block"], ["NK5", "Neck Construction", "Cut truss rod groove"], ["NK6", "Neck Construction", "Cut neck tenon"], ["NK7", "Neck Construction", "Bandsaw heel profile"], ["NK8", "Neck Construction", "Taper Thickness"], ["NK9", "Neck Construction", "Thin headstock"], ["TP1", "Soundboard", "Bookmatch and Plane edge"], ["TP2", "Soundboard", "Reduce to max. even thickness"], ["TP3", "Soundboard", "Tap test & join soundboard plates"], ["TP4", "Soundboard", "Trim off rear graft"], ["TP5", "Soundboard", "Inlay rosette"], ["TP6", "Soundboard", "Plane to thickness, cut perimiter"], ["TP7", "Soundboard", "Reinforce sound hole & cut hole"], ["TP8", "Soundboard", "Fit and glue braces"], ["BR1", "Braces & Bridge Plate", "Cut brace material"], ["BR2", "Braces & Bridge Plate", "Shape and notch X Brace, ToneBars, finger bars"], ["BR3", "Braces & Bridge Plate", "Laminate falcate braces (optional)"], ["BR4", "Braces & Bridge Plate", "Shape/fit X braces, ToneBars, finger bars"], ["BB1", "Braces & Bridge Plate", "Shape back braces"], ["BB2", "Braces & Bridge Plate", "Shape base of braces"], ["BRP1", "Braces & Bridge Plate", "Cut Bridge plate blank"], ["BRP2", "Braces & Bridge Plate", "Shape bridge plate"], ["BP1", "Rear Plate", "Bookmatch and Plane edge"], ["BP2", "Rear Plate", "Plane to max. even thickness"], ["BP3", "Rear Plate", "Tap test"], ["BP4", "Rear Plate", "Join plates"], ["BP5", "Rear Plate", "Plane to target thickness"], ["BP6", "Rear Plate", "Cut panel to profile"], ["BP7", "Rear Plate", "Glue on & shape rear graft"], ["BP8", "Rear Plate", "Fit and glue back braces"], ["SB1", "Sides & Bindings", "Plane to thickness"], ["SB2", "Sides & Bindings", "Trim off bindings (optional)"], ["SB3", "Sides & Bindings", "Cut to side profile"], ["SB4", "Sides & Bindings", "Thin cutaway if required"], ["SB5", "Sides & Bindings", "Bend sides"], ["SB6", "Sides & Bindings", "Fit sides to mould"], ["SB7", "Sides & Bindings", "Bend purfling (optional)"], ["SB8", "Sides & Bindings", "Bend bindings"], ["EB1", "End Blocks & Linings", "Cut head block"], ["EB2", "End Blocks & Linings", "Shape head block"], ["EB3", "End Blocks & Linings", "Cut tail block"], ["EB4", "End Blocks & Linings", "Shape tail block"], ["EB5", "End Blocks & Linings", "Rout heel mortise in head block (optional)"], ["EB6", "End Blocks & Linings", "Cut lining blanks (optional)"], ["EB7", "End Blocks & Linings", "Kerf/bend linings (optional)"], ["BG1", "Bridge", "Cut bridge blank"], ["BG2", "Bridge", "Cut to profile"], ["BG3", "Bridge", "Drill bridge pin holes"], ["BG4", "Bridge", "Shape bridge wings"], ["BG5", "Bridge", "Shape top of bridge"], ["BG6", "Bridge", "Cut saddle slot"], ["BG7", "Bridge", "Countersink bridge pin holes"], ["BG8", "Bridge", "Polish bridge"], ["NS1", "Nut & Saddle", "Cut blanks"], ["NS2", "Nut & Saddle", "Shape saddle blank"], ["NS3", "Nut & Saddle", "Shape nut, mark string slots & polish"], ["NS4", "Nut & Saddle", "Shape compensated saddle"], ["NS5", "Nut & Saddle", "Polish saddle"], ["MA1", "Body Construction", "Fit & glue head & tail blocks"], ["MA2", "Body Construction", "Radius sides for top & back"], ["MA3", "Body Construction", "Fit & glue kerfed linings"], ["MA4", "Body Construction", "Make side splices"], ["MA5", "Body Construction", "Make mass blocks"], ["MA6", "Body Construction", "Glue mass blocks & side splices"], ["MA7", "Body Construction", "Radius top and back linings"], ["MA8", "Body Construction", "Notch lining for bracing"], ["MA9", "Body Construction", "Dry fit top and back"], ["MA10", "Body Assembly & Binding", "Glue on back panel & trim to profile"], ["MA11", "Body Assembly & Binding", "Check-fit top panel"], ["MA12", "Body Assembly & Binding", "Glue on top panel & trim to profile"], ["MA13", "Body Assembly & Binding", "Route binding channel"], ["MA14", "Body Assembly & Binding", "Bind body, fit butt strip"], ["MA15", "Body Assembly & Binding", "Rout heel mortise in body, with Jig (optional)"], ["MA16", "Body Assembly & Binding", "Sand, grain fill & finish body"], ["MA17", "Body Assembly & Binding", "Buff body"], ["MA18", "Neck Shaping & Finish", "Drill holes for tuners"], ["MA19", "Neck Shaping & Finish", "Assemble neck, rod & fretboard"], ["MA20", "Neck Shaping & Finish", "Carve neck"], ["MA21", "Neck Shaping & Finish", "Make heel cap"], ["MA22", "Neck Shaping & Finish", "Fit and glue heel cap"], ["MA23", "Neck Shaping & Finish", "Fit and glue fret markers"], ["MA24", "Neck Shaping & Finish", "Sand, grain fill & finish neck"], ["MA25", "Neck Shaping & Finish", "Buff neck, fit tuners"], ["NB1", "Neck-to-Body Fitting (bolt-on)", "Laminate head & shape"], ["NB2", "Neck-to-Body Fitting (bolt-on)", "Drill for tuners"], ["NB3", "Neck-to-Body Fitting (bolt-on)", "Pre-carve heel (template)"], ["NB4", "Neck-to-Body Fitting (bolt-on)", "Pre-fit neck angles (template)"], ["NB5", "Neck-to-Body Fitting (bolt-on)", "Make bolt bar for heel"], ["NB6", "Neck-to-Body Fitting (bolt-on)", "Fit neck, adjust pitch & yaw"], ["FA1", "Final Assembly & Setup", "Fix neck to body"], ["FA2", "Final Assembly & Setup", "Check pitch, yaw angles"], ["FA3", "Final Assembly & Setup", "Scrape bridge area"], ["FA4", "Final Assembly & Setup", "Glue on bridge"], ["FA5", "Final Assembly & Setup", "Fit nut"], ["FA6", "Final Assembly & Setup", "Fit saddle"], ["FA7", "Final Assembly & Setup", "String guitar"], ["FA8", "Final Assembly & Setup", "Set relief using truss rod"], ["FA9", "Final Assembly & Setup", "Set action at nut and saddle"], ["FA10", "Final Assembly & Setup", "Set intonation"], ["FA11", "Final Assembly & Setup", "Tune and play"], ["FA12", "Final Assembly & Setup", "Assess acoustic function"], ["FA13", "Final Assembly & Setup", "Optimise acoustic parameters"]];    // [ [id, laneName, stepName], ... ]
+
+// The one prototype write-up. Everything else shows the "not recorded yet" state.
+// summary[].t accepts "mm:ss" or plain seconds — clicking a summary line seeks the video to that point.
+const NOTES = {
+  "NS4": {
+    hasVideo: true,
+    highlights: [
+      "The B string needs the most compensation of all six — its contact point moves almost all the way back, level with the bass E.",
+      "An 1/8\u2033 saddle gives noticeably more room to compensate accurately than a 3/32\u2033 or 1/16\u2033 blank.",
+      "Cutting ramps into an existing crowned saddle can quietly lower the action \u2014 check your string height before modifying rather than remaking it.",
+      "Set intonation at the 12th fret with a strobe tuner, then stop \u2014 the ear can't reliably hear past about 2\u20135 cents, and no fretted instrument is perfect everywhere anyway."
+    ],
+    summaryOverview: "This step turns a straight saddle into a fully compensated one, so each string breaks at its own point instead of sharing one averaged line. Thinner-cored strings sharpen more when fretted, so they need their contact point pushed further from centre \u2014 most dramatically the plain steel B string, whose core is unexpectedly thick. Mark the six break points, blend E-A-D-G into one shallow ramp, then cut sharper opposing ramps for B (back) and treble E (forward), always leaving a flat rather than a knife-edge. Fit it, check intonation string by string against the 12th fret with a strobe tuner, then finish and polish.",
+    summary: [
+      {t:"0:00", label:"Introduction"},
+      {t:"1:53", label:"Straight vs. fully compensated saddles"},
+      {t:"3:44", label:"What a straight saddle does"},
+      {t:"4:46", label:"Why the B string is different"},
+      {t:"6:40", label:"Drawing the compensation pattern"},
+      {t:"8:55", label:"Saddle width \u2014 why 1/8\u2033 is easier to work with"},
+      {t:"11:20", label:"Marking the existing saddle"},
+      {t:"12:01", label:"The problem with modifying an existing (crowned) saddle"},
+      {t:"13:48", label:"Compensation can alter the action"},
+      {t:"15:36", label:"Removing and holding the saddle"},
+      {t:"17:03", label:"Laying out and filing the compensation ramps"},
+      {t:"19:37", label:"Test-fit before finishing"},
+      {t:"20:02", label:"Don't chase impossible perfection"},
+      {t:"22:02", label:"Fretted instruments are inherently a compromise"},
+      {t:"23:22", label:"Fretting sharpens the string"},
+      {t:"24:59", label:"True Temperament frets illustrate the problem"},
+      {t:"27:07", label:"The envelope of a note"},
+      {t:"29:46", label:"Why use a strobe tuner"},
+      {t:"31:23", label:"Reading the strobe"},
+      {t:"32:36", label:"Checking each string"},
+      {t:"34:06", label:"Why a steel-string guitar can still sound slightly out of tune"},
+      {t:"36:34", label:"Closing"}
+    ],
+    transcript: "Not a word-for-word transcript \u2014 the video's original creator owns the exact wording, so here's the technique paraphrased for reference.\n\nA straight saddle averages all six strings' intonation along one line; it's close enough for most players but not exact. A fully compensated saddle instead cuts each string its own break point. The driver is string core diameter: as you go from the wound bass strings down to the plain steel strings, core diameter shrinks \u2014 until you hit the B string, whose bare core jumps back up to nearly the thickness of the bass E. That's why B gets pushed almost all the way to the back of the saddle, while the treble E sits toward the front, similar to G.\n\nLayout: mark all six string positions, then run a single shallow diagonal ramp through E-A-D-G, and cut two steeper, opposing ramps \u2014 one taking B rearward, one bringing treble E forward. Keep every point a small flat, never a sharpened edge.\n\nA wider (1/8\u2033) saddle blank gives more room to hit these points accurately than a 3/32\u2033 blank; anything narrower than that doesn't leave enough material to work with.\n\nIf you're re-shaping an existing crowned saddle rather than starting from a fresh blank, cutting a ramp lowers that string slightly below the original crown height \u2014 most noticeable on the B string's big rearward move. That's usually fine if the action's already a touch high, but if it's already correct, a new saddle blank is the safer bet than modifying the existing one.\n\nShaping itself is done with a small cross-cut needle file, tilted onto one edge to define each boundary cleanly before cutting the ramp faces. Fit it unfinished, check intonation, and only polish once you're happy \u2014 no point polishing a shape you might still need to adjust.\n\nFor checking intonation: compare the harmonic (or open string) at the 12th fret using a strobe tuner, which reads far more finely than a clip-on tuner. Repeat each check a few times, since finger pressure and slight bending will shift the reading. Aim for the 12th fret and don't chase perfection across every other fret position \u2014 fretting itself sharpens a string by stretching it, the amount varies by position, and no straight-fretted instrument can be perfect everywhere. Most players can't reliably hear past about 2\u20135 cents of error, so that's a reasonable place to stop. Tune to the string's initial attack, not the decay \u2014 the two can differ slightly on a sensitive tuner, and you can't make both perfect at once."
+  }
+};
+
+function parseTime(t){
+  if(typeof t === 'number') return t;
+  const parts = String(t).split(':').map(Number);
+  return parts.reduce((acc,v)=> acc*60+v, 0);
+}
+
+function slug(s){ return s.replace(/[^a-z0-9]+/gi,'-'); }
+
+function darken(hex, amt){
+  const n = parseInt(hex.replace('#','').slice(-6),16);
+  let r = Math.max(0,(n>>16)-amt), g=Math.max(0,((n>>8)&255)-amt), b=Math.max(0,(n&255)-amt);
+  return '#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+}
+
+const laneColor = {};
+LANES.forEach(([name,hex])=>{ laneColor[name] = '#'+hex.slice(2); });
+
+const stepsByLane = {};
+LANES.forEach(([name])=> stepsByLane[name]=[]);
+STEPS.forEach(([id,lane,name])=> stepsByLane[lane].push({id,name}));
+
+const laneListEl = document.getElementById('lane-list');
+LANES.forEach(([laneName,hex])=>{
+  const color = laneColor[laneName];
+  const laneEl = document.createElement('div');
+  laneEl.className = 'lane';
+  laneEl.style.setProperty('--lane-color', color);
+
+  const head = document.createElement('button');
+  head.className = 'lane-head';
+  head.innerHTML = `<span>${laneName}</span><span class="lane-count">${stepsByLane[laneName].length}</span><span class="chev">▸</span>`;
+  head.addEventListener('click', ()=> laneEl.classList.toggle('open'));
+  laneEl.appendChild(head);
+
+  const ul = document.createElement('ul');
+  ul.className = 'steps';
+  stepsByLane[laneName].forEach(({id,name})=>{
+    const li = document.createElement('li');
+    const hasVideo = NOTES[id] && NOTES[id].hasVideo;
+    li.innerHTML = `<a href="#${id}" data-id="${id}"><span class="id-tag">${id}</span><span class="${hasVideo?'has-video':''}">${name}</span></a>`;
+    ul.appendChild(li);
+  });
+  laneEl.appendChild(ul);
+  laneListEl.appendChild(laneEl);
+});
+
+const depsIndex = {}; // not wired to real dependency data in this prototype
+
+const trackerBody = document.getElementById('tracker-body');
+LANES.forEach(([laneName,hex])=>{
+  const color = laneColor[laneName];
+  const laneDiv = document.createElement('div');
+  laneDiv.className = 'tracker-lane';
+
+  const head = document.createElement('div');
+  head.className = 'tracker-lane-head';
+  head.style.background = color;
+  head.style.color = (laneColor[laneName] && LANE_TEXT_ON(laneName)) ? '#fff' : '#1A1A1A';
+  head.innerHTML = `<span>${laneName}</span><span>${stepsByLane[laneName].length} steps</span>`;
+  laneDiv.appendChild(head);
+
+  const ul = document.createElement('ul');
+  ul.className = 'tracker-rows';
+  stepsByLane[laneName].forEach(({id,name})=>{
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="id-tag">${id}</span><a href="#${id}">${name}</a>`;
+    ul.appendChild(li);
+  });
+  laneDiv.appendChild(ul);
+  trackerBody.appendChild(laneDiv);
+});
+
+function LANE_TEXT_ON(laneName){
+  // reuse the same lightness threshold the sidebar/step colours use
+  const idx = LANES.findIndex(l=>l[0]===laneName);
+  const t = LANES.length>1 ? idx/(LANES.length-1) : 0;
+  return t > 0.55;
+}
+
+function hideAllViews(){
+  document.getElementById('home-view').style.display = 'none';
+  document.getElementById('step-view').style.display = 'none';
+  document.getElementById('tracker-view').style.display = 'none';
+  document.getElementById('tracker-link').classList.remove('active');
+  document.querySelectorAll('.steps li a.active').forEach(a=>a.classList.remove('active'));
+}
+
+function showHome(){
+  hideAllViews();
+  document.getElementById('home-view').style.display = 'block';
+}
+
+function showTracker(){
+  hideAllViews();
+  document.getElementById('tracker-view').style.display = 'block';
+  document.getElementById('tracker-link').classList.add('active');
+}
+
+function showStep(id){
+  const step = STEPS.find(s=>s[0]===id);
+  if(!step){ showHome(); return; }
+  const [sid, lane, name] = step;
+  hideAllViews();
+  document.getElementById('step-view').style.display = 'block';
+
+  document.querySelectorAll('.steps li a').forEach(a=> a.classList.toggle('active', a.dataset.id===id));
+  const activeLink = document.querySelector(`.steps li a[data-id="${id}"]`);
+  if(activeLink){
+    activeLink.closest('.lane').classList.add('open');
+    activeLink.scrollIntoView({block:'nearest'});
+  }
+
+  document.getElementById('sv-lane').textContent = lane;
+  document.getElementById('sv-lane').style.color = darken(laneColor[lane], 60);
+  document.getElementById('sv-name').textContent = name;
+  document.getElementById('sv-id').textContent = sid;
+
+  const video = document.getElementById('sv-video');
+  const empty = document.getElementById('sv-video-empty');
+  document.getElementById('sv-filename').textContent = 'video/' + sid + '.mp4';
+  video.style.display = '';
+  empty.style.display = 'none';
+  video.src = 'video/' + sid + '.mp4';
+  video.onerror = () => { video.style.display='none'; empty.style.display='flex'; };
+  video.load();
+
+  const note = NOTES[sid] || { highlights: [], summary: [], summaryOverview: "", transcript: "" };
+
+  // Highlights — always visible
+  const hEl = document.getElementById('sv-highlights');
+  if(note.highlights.length){
+    hEl.className = 'highlights';
+    hEl.innerHTML = '<ul>' + note.highlights.map(h=>`<li>${h}</li>`).join('') + '</ul>';
+  } else {
+    hEl.className = 'highlights empty';
+    hEl.innerHTML = '<ul><li>No highlights yet — these will pull the key lines out once the transcript is added.</li></ul>';
+  }
+
+  // Summary — collapsible: an overview paragraph, then a clickable chapter list that seeks the video
+  const ovEl = document.getElementById('sv-summary-overview');
+  ovEl.textContent = note.summaryOverview || '';
+  ovEl.style.display = note.summaryOverview ? '' : 'none';
+
+  const sList = document.getElementById('sv-summary-list');
+  if(note.summary.length){
+    sList.innerHTML = note.summary.map((s,i)=>
+      `<li><button class="jump" data-t="${parseTime(s.t)}"><span class="time-badge">${s.t}</span><span class="summary-label">${s.label}</span></button></li>`
+    ).join('');
+    sList.querySelectorAll('button.jump').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        video.currentTime = parseFloat(btn.dataset.t);
+        video.play();
+      });
+    });
+  } else {
+    sList.innerHTML = '<li class="empty-note" style="padding:11px 0;">Summary will list clickable moments from the video once the transcript\'s in.</li>';
+  }
+
+  // Process Notes — collapsible, paraphrased write-up (never a verbatim transcript of someone else's video)
+  const tEl = document.getElementById('sv-transcript');
+  if(note.transcript){
+    tEl.className = 'transcript-body';
+    tEl.textContent = note.transcript;
+  } else {
+    tEl.className = 'transcript-body empty-note';
+    tEl.textContent = 'Not added yet.';
+  }
+}
+
+function route(){
+  const id = location.hash.replace('#','');
+  if(id === 'tracker') showTracker();
+  else if(id) showStep(id);
+  else showHome();
+}
+window.addEventListener('hashchange', route);
+route();
+
+document.getElementById('search').addEventListener('input', (e)=>{
+  const q = e.target.value.trim().toLowerCase();
+  document.querySelectorAll('.lane').forEach(laneEl=>{
+    let anyMatch = false;
+    laneEl.querySelectorAll('.steps li').forEach(li=>{
+      const text = li.textContent.toLowerCase();
+      const match = !q || text.includes(q);
+      li.style.display = match ? '' : 'none';
+      if(match) anyMatch = true;
+    });
+    if(q){ laneEl.classList.toggle('open', anyMatch); laneEl.style.display = anyMatch ? '' : 'none'; }
+    else { laneEl.style.display=''; }
+  });
+});
+</script>
+</body>
+</html>
