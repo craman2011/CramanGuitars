@@ -288,7 +288,7 @@
   }
   details.disclosure summary::-webkit-details-marker { display: none; }
   details.disclosure summary::before {
-    content: "▸";
+    content: "?";
     font-size: 11px;
     color: var(--ink-soft);
     transition: transform .15s ease;
@@ -405,12 +405,18 @@
 
 <main id="main">
   <div id="home-view">
-    <div class="kicker">Steel‑String Acoustic</div>
+    <div class="kicker">Steel-String Acoustic</div>
     <h1>The build, step by step</h1>
-    <p>Pick a process from the list to see its video and notes. This mirrors the Task Tracker sheet exactly — same lanes, same order, same colour down the side.</p>
-    <div class="howto">
-      Drop a video for any step into the <code>video</code> folder next to this page, named after the step's code — for <strong>Shape compensated saddle</strong> that's <code>video/NS4.mp4</code>. It'll show up here automatically next time you open the page. From the spreadsheet, paste this page's address plus <code>#NS4</code> into that step's Reference Link cell to jump straight here.
-    </div>
+
+    <div class="howto"> My professional life has always been deeply intertwined with education. While
+            working and teaching CAD (Computer-Aided Design) at the high school level, I
+            collaborated with like-minded educators and industry partners — including Maton
+            and Cole Clark — to pioneer a standardized pathway for the craft. 
+			<br>
+			<br>This page is a way of keeping track of the knowledge on the 
+			subject acquired throughout time.
+      </div><div>    <p>Pick a process from the list to see its video and notes. 
+	  <br>This mirrors the Task Tracker sheet exactly</p></div>
   </div>
 
   <article id="step-view">
@@ -524,7 +530,7 @@ LANES.forEach(([laneName,hex])=>{
 
   const head = document.createElement('button');
   head.className = 'lane-head';
-  head.innerHTML = `<span>${laneName}</span><span class="lane-count">${stepsByLane[laneName].length}</span><span class="chev">▸</span>`;
+  head.innerHTML = `<span>${laneName}</span><span class="lane-count">${stepsByLane[laneName].length}</span><span class="chev">?</span>`;
   head.addEventListener('click', ()=> laneEl.classList.toggle('open'));
   laneEl.appendChild(head);
 
