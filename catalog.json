@@ -1,0 +1,479 @@
+{
+  "Truss Rod": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "truss-rod-opt1-1788607025552",
+        "name": "Dual action Truss Rod",
+        "stock": 10,
+        "excludesSteps": []
+      },
+      {
+        "id": "truss-rod-opt2-1788607103114",
+        "name": "Dual action & Carbon Fibre",
+        "stock": 10,
+        "excludesSteps": []
+      },
+      {
+        "id": "truss-rod-opt3-1788607178821",
+        "name": "No Truss Rod (skips truss rod steps)",
+        "stock": 99,
+        "excludesSteps": [
+          "TR1",
+          "TR2",
+          "TR3",
+          "TR4",
+          "TR5"
+        ]
+      },
+      {
+        "id": "truss-rod-opt4-1788607317371",
+        "name": "Carbon Fibre Only (classical)",
+        "stock": 10,
+        "excludesSteps": [
+          "TR1",
+          "TR2",
+          "TR3",
+          "TR4",
+          "TR5"
+        ]
+      }
+    ]
+  },
+  "Fretboard": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "fretboard-opt1-1788607806589",
+        "name": "Rosewood",
+        "stock": 12,
+        "excludesSteps": []
+      },
+      {
+        "id": "fretboard-opt2-1788607845415",
+        "name": "Ebony",
+        "stock": 12,
+        "excludesSteps": []
+      },
+      {
+        "id": "fretboard-opt3-1788607864404",
+        "name": "Maple",
+        "stock": 12,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Neck Material": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "neck-material-opt1-1788607964037",
+        "name": "Qld Maple",
+        "stock": 12,
+        "excludesSteps": []
+      },
+      {
+        "id": "neck-material-opt2-1788607981148",
+        "name": "Blackwood",
+        "stock": 12,
+        "excludesSteps": []
+      },
+      {
+        "id": "neck-material-opt3-1788607998292",
+        "name": "Figured Maple",
+        "stock": 3,
+        "excludesSteps": []
+      },
+      {
+        "id": "neck-material-opt4-1788608073034",
+        "name": "Mahogany",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "neck-solid-timber",
+        "name": "Solid Timber (no scarf joint)",
+        "stock": 0,
+        "excludesSteps": [
+          "NK3"
+        ]
+      }
+    ]
+  },
+  "Neck Lamination": {
+    "tab": null,
+    "requiresSelection": {
+      "category": "Neck Material",
+      "optionId": "neck-solid-timber"
+    },
+    "options": [
+      {
+        "id": "neck-lam-laminated",
+        "name": "Laminated (multi-piece)",
+        "stock": 99,
+        "excludesSteps": []
+      },
+      {
+        "id": "neck-lam-solid",
+        "name": "Solid (single-piece)",
+        "stock": 99,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Headstock Veneer": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": []
+  },
+  "Soundboard": {
+    "tab": "Soundboard",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "soundboard-opt1-1788608124248",
+        "name": "Engelmann Spruce",
+        "stock": 3,
+        "excludesSteps": []
+      },
+      {
+        "id": "soundboard-opt2-1788608168432",
+        "name": "Huon Pine",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "soundboard-opt3-1788608188444",
+        "name": "King Billy Pine",
+        "stock": 3,
+        "excludesSteps": []
+      },
+      {
+        "id": "soundboard-opt4-1788609022835",
+        "name": "Sitka Spruce",
+        "stock": 4,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Rosette": {
+    "tab": "Soundboard",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "body-assembly-opt5-1788613406161",
+        "name": "Timber rosette",
+        "stock": 99,
+        "excludesSteps": []
+      },
+      {
+        "id": "body-assembly-opt6-1788613450849",
+        "name": "Signature Rosette",
+        "stock": 99,
+        "excludesSteps": [
+          "TP5"
+        ]
+      }
+    ]
+  },
+  "Braces and Bridge plate": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "braces-and-bridge-plate-opt1-1788609890618",
+        "name": "Spruce Bracing and Maple plate",
+        "stock": 8,
+        "excludesSteps": [
+          "BR3"
+        ]
+      },
+      {
+        "id": "braces-and-bridge-plate-opt2-1788609970758",
+        "name": "Spruce Bracing and Blackwood plate",
+        "stock": 8,
+        "excludesSteps": [
+          "BR3"
+        ]
+      },
+      {
+        "id": "braces-and-bridge-plate-opt3-1788610086402",
+        "name": "Spruce & CF Falcate Bracing & Plate",
+        "stock": 6,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Rear Plate": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "rear-plate-opt1-1788609152199",
+        "name": "Blackwood",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "rear-plate-opt2-1788609175228",
+        "name": "Mahogany",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "rear-plate-opt3-1788609211567",
+        "name": "Huon Pine",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "rear-plate-opt4-1788609288806",
+        "name": "Ebony",
+        "stock": 3,
+        "excludesSteps": []
+      },
+      {
+        "id": "rear-plate-opt5-1788611203665",
+        "name": "Qld. Maple",
+        "stock": 6,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Sides & Bindings": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "binding-yes",
+        "name": "Maple Sides & Maple binding",
+        "stock": 32,
+        "excludesSteps": []
+      },
+      {
+        "id": "binding-no",
+        "name": "No binding (skips binding steps)",
+        "stock": 99,
+        "excludesSteps": [
+          "SB7",
+          "SB8",
+          "MA13"
+        ]
+      },
+      {
+        "id": "sides-bindings-opt3-1788606877523",
+        "name": "Ebony Sides & Ebony Binding",
+        "stock": 32,
+        "excludesSteps": []
+      },
+      {
+        "id": "sides-bindings-opt4-1788606943182",
+        "name": "Blackwood Sides & Blackwood Binding",
+        "stock": 32,
+        "excludesSteps": []
+      },
+      {
+        "id": "sides-bindings-opt5-1788611281448",
+        "name": "Qld. Maple Sides & Qld. Maple Binding",
+        "stock": 20,
+        "excludesSteps": []
+      },
+      {
+        "id": "sides-bindings-opt6-1788611479231",
+        "name": "Huon Pine Sides & Huon Binding",
+        "stock": 20,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "End Blocks & Linings": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "end-blocks-linings-opt1-1788611806524",
+        "name": "Kauri Blocks and Kerfed Linings",
+        "stock": 10,
+        "excludesSteps": []
+      },
+      {
+        "id": "end-blocks-linings-opt2-1788611916556",
+        "name": "Kauri Blocks and Solid Kauri Linings",
+        "stock": 6,
+        "excludesSteps": [
+          "EB7"
+        ]
+      }
+    ]
+  },
+  "Bridge": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "bridge-opt1-1788612016040",
+        "name": "Ebony Bridge",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "bridge-opt2-1788612063895",
+        "name": "Blackwood Bridge",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "bridge-opt3-1788612088995",
+        "name": "Rosewood bridge",
+        "stock": 6,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Nut & Saddle": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "nut-bone",
+        "name": "Bone nut & saddle",
+        "stock": 10,
+        "excludesSteps": []
+      },
+      {
+        "id": "nut-tusq",
+        "name": "TUSQ nut & saddle",
+        "stock": 6,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Body Purfling": {
+    "tab": "Purfling",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "body-assembly-opt1-1788613122759",
+        "name": "B.W.B Purfling",
+        "stock": 40,
+        "excludesSteps": []
+      },
+      {
+        "id": "body-assembly-opt2-1788613170592",
+        "name": "W.B.W Purfling",
+        "stock": 20,
+        "excludesSteps": []
+      },
+      {
+        "id": "body-assembly-opt3-1788613258348",
+        "name": "Deluxe 5 core B.W.B.W.B Purfling",
+        "stock": 20,
+        "excludesSteps": []
+      },
+      {
+        "id": "purfling-none-body",
+        "name": "No Purfling",
+        "stock": 99,
+        "excludesSteps": [
+          "SB7"
+        ]
+      }
+    ]
+  },
+  "Soundboard Purfling": {
+    "tab": "Purfling",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "purfling-deluxe-soundboard-1",
+        "name": "Deluxe Purfling (soundboard)",
+        "stock": 0,
+        "excludesSteps": []
+      },
+      {
+        "id": "purfling-none-soundboard",
+        "name": "No Purfling",
+        "stock": 99,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Headstock Purfling": {
+    "tab": "Purfling",
+    "requiresSelection": {
+      "category": "Soundboard Purfling",
+      "optionId": "purfling-deluxe-soundboard-1"
+    },
+    "options": [
+      {
+        "id": "body-assembly-opt4-1788613318611",
+        "name": "Headstock Purfling Deluxe",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "purfling-none-headstock",
+        "name": "No Headstock Purfling",
+        "stock": 99,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Tuners": {
+    "tab": "Final Assembly",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "final-assembly-opt1-1788613559497",
+        "name": "Gotoh Machine heads",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "final-assembly-opt2-1788613586938",
+        "name": "Grover Machine heads",
+        "stock": 6,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Strings": {
+    "tab": "Final Assembly",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "final-assembly-opt3-1788613628754",
+        "name": "Elixir 11 - 56",
+        "stock": 10,
+        "excludesSteps": []
+      },
+      {
+        "id": "final-assembly-opt4-1788613685220",
+        "name": "Elixir 10 - 46",
+        "stock": 10,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Hardware Colour": {
+    "tab": "Final Assembly",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "final-assembly-opt5-1788613759380",
+        "name": "Hardware - Gold",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "final-assembly-opt6-1788613780974",
+        "name": "Hardware - Chrome",
+        "stock": 10,
+        "excludesSteps": []
+      }
+    ]
+  }
+}

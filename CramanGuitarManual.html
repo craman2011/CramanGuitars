@@ -440,6 +440,159 @@
   .tr-next-progress { background: #DCEBFB; color: #1F4E78; }
   .tr-next-na { background: #EFEFEF; color: #888; }
   .tr-next-bought { background: #E3E3E3; color: #808080; font-style: italic; }
+
+  /* ---------- Home CTA ---------- */
+  .cta-btn {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 12px 22px;
+    background: var(--walnut);
+    color: #fff;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  .cta-btn:hover { background: var(--walnut-deep); }
+
+  /* ---------- Customer Build view ---------- */
+  #build-view, #admin-view { display: none; }
+  #build-view h1, #admin-view h1 { font-size: 30px; margin-bottom: 6px; }
+  #build-view .sub, #admin-view .sub { color: var(--ink-soft); font-size: 13.5px; line-height: 1.5; margin-bottom: 24px; max-width: 68ch; }
+
+  .cat-block { margin-bottom: 22px; }
+  .tab-group {
+    margin-bottom: 28px;
+    padding: 16px 20px;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: rgba(138,90,52,0.04);
+  }
+  .tab-group h2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--walnut-deep);
+    margin-bottom: 14px;
+  }
+  .tab-group-body .cat-block:last-child { margin-bottom: 0; }
+  .cat-block h3 { font-size: 15px; margin-bottom: 8px; }
+  .cat-block select {
+    width: 100%;
+    max-width: 420px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    padding: 9px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+    background: #fff;
+  }
+  .cat-block select option:disabled { color: #bbb; }
+
+  .build-summary {
+    margin-top: 34px;
+    padding: 20px 24px;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    max-width: 520px;
+  }
+  .build-summary h2 { font-size: 16px; margin-bottom: 12px; }
+  #build-bom { list-style: none; margin: 0 0 18px; padding: 0; font-size: 14px; }
+  #build-bom li { padding: 5px 0; border-bottom: 1px solid var(--rule); }
+  #build-bom li:last-child { border-bottom: none; }
+  #build-bom .bom-empty { color: var(--ink-soft); font-style: italic; }
+  .build-contact { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+  .build-contact label { font-size: 12.5px; font-weight: 600; color: var(--ink-soft); display: flex; flex-direction: column; gap: 4px; }
+  .build-contact input {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+  }
+
+  /* ---------- Admin view ---------- */
+  .admin-cat {
+    margin-bottom: 22px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 14px 16px;
+    background: var(--paper-raised);
+  }
+  .admin-cat-title {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .admin-cat-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .admin-cat-meta label {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .admin-cat-meta input, .admin-cat-meta select {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12.5px;
+    padding: 5px 7px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    min-width: 220px;
+  }
+  .admin-cat-title input { font-size: 15px; font-weight: 600; font-family: 'Source Serif 4', serif; border: none; background: none; flex: 1; }
+  .admin-row {
+    padding: 10px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .admin-row-main {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .admin-row-main input[type="text"] { flex: 1 1 220px; }
+  .admin-row-main input[type="number"] { width: 70px; }
+  .admin-row input {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    padding: 6px 8px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+  }
+  .admin-row-excludes label {
+    display: block;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .excludes-select {
+    width: 100%;
+    max-width: 520px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+  }
+  .admin-row button, .admin-cat button.add-option {
+    font-size: 11.5px;
+    padding: 4px 9px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    background: #fff;
+    cursor: pointer;
+  }
 </style>
 </head>
 <body>
@@ -468,6 +621,7 @@
 			subject acquired throughout time.
       </div><div>    <p>Pick a process from the list to see its video and notes. 
 	  <br>This mirrors the Task Tracker sheet exactly</p></div>
+    <a href="#build" class="cta-btn">Customer Build Components &#8594;</a>
   </div>
 
   <article id="step-view">
@@ -509,6 +663,36 @@
       <input id="tracker-import-file" type="file" accept="application/json" style="display:none;">
     </div>
     <div id="tracker-body"></div>
+  </div>
+
+  <div id="build-view">
+    <h1>Build Your Guitar</h1>
+    <div class="sub">Choose your components below. Items marked out of stock aren't currently available. When you're happy with your build, send it through and Craig will follow up.</div>
+    <div id="build-catalog"></div>
+    <div class="build-summary">
+      <h2>Your build so far</h2>
+      <ul id="build-bom"></ul>
+      <div class="build-contact">
+        <label>Your name <input id="build-name" type="text" placeholder="e.g. Doug"></label>
+        <label>Your email <input id="build-email" type="email" placeholder="you@example.com"></label>
+      </div>
+      <div class="tracker-toolbar">
+        <button id="build-submit" class="tt-btn">Email this build to Craig</button>
+        <button id="build-download" class="tt-btn tt-btn-secondary">Download build (.json)</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="admin-view">
+    <h1>Catalog Admin</h1>
+    <div class="sub">Craig only. Edit components, stock, and which build steps each option skips. Nothing here is visible to customers unless you export and publish it.</div>
+    <div class="tracker-toolbar">
+      <button id="admin-export" class="tt-btn">Export catalog.json (publish this)</button>
+      <button id="admin-import-btn" class="tt-btn tt-btn-secondary">Import catalog.json</button>
+      <input id="admin-import-file" type="file" accept="application/json" style="display:none;">
+      <button id="admin-add-category" class="tt-btn tt-btn-secondary">Add category</button>
+    </div>
+    <div id="admin-catalog"></div>
   </div>
 </main>
 
@@ -744,6 +928,8 @@ function hideAllViews(){
   document.getElementById('home-view').style.display = 'none';
   document.getElementById('step-view').style.display = 'none';
   document.getElementById('tracker-view').style.display = 'none';
+  document.getElementById('build-view').style.display = 'none';
+  document.getElementById('admin-view').style.display = 'none';
   document.getElementById('tracker-link').classList.remove('active');
   document.querySelectorAll('.steps li a.active').forEach(a=>a.classList.remove('active'));
 }
@@ -833,6 +1019,8 @@ function showStep(id){
 function route(){
   const id = location.hash.replace('#','');
   if(id === 'tracker') showTracker();
+  else if(id === 'build') showBuild();
+  else if(id === 'admin') showAdmin();
   else if(id) showStep(id);
   else showHome();
 }
@@ -853,6 +1041,876 @@ document.addEventListener('click', function(e){
     location.hash = target;
   }
 });
+
+// ===========================================================================
+// Customer Build Components — catalog, stock, BOM + filtered process list
+// ===========================================================================
+const CATALOG_STORAGE_KEY = 'cramanCatalog_v1';
+
+// Example placeholder catalog — replace with your real components via #admin,
+// then Export catalog.json and publish it alongside this file.
+const DEFAULT_CATALOG = {
+  "Truss Rod": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "truss-rod-opt1-1788607025552",
+        "name": "Dual action Truss Rod",
+        "stock": 10,
+        "excludesSteps": []
+      },
+      {
+        "id": "truss-rod-opt2-1788607103114",
+        "name": "Dual action & Carbon Fibre",
+        "stock": 10,
+        "excludesSteps": []
+      },
+      {
+        "id": "truss-rod-opt3-1788607178821",
+        "name": "No Truss Rod (skips truss rod steps)",
+        "stock": 99,
+        "excludesSteps": [
+          "TR1",
+          "TR2",
+          "TR3",
+          "TR4",
+          "TR5"
+        ]
+      },
+      {
+        "id": "truss-rod-opt4-1788607317371",
+        "name": "Carbon Fibre Only (classical)",
+        "stock": 10,
+        "excludesSteps": [
+          "TR1",
+          "TR2",
+          "TR3",
+          "TR4",
+          "TR5"
+        ]
+      }
+    ]
+  },
+  "Fretboard": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "fretboard-opt1-1788607806589",
+        "name": "Rosewood",
+        "stock": 12,
+        "excludesSteps": []
+      },
+      {
+        "id": "fretboard-opt2-1788607845415",
+        "name": "Ebony",
+        "stock": 12,
+        "excludesSteps": []
+      },
+      {
+        "id": "fretboard-opt3-1788607864404",
+        "name": "Maple",
+        "stock": 12,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Neck Material": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "neck-material-opt1-1788607964037",
+        "name": "Qld Maple",
+        "stock": 12,
+        "excludesSteps": []
+      },
+      {
+        "id": "neck-material-opt2-1788607981148",
+        "name": "Blackwood",
+        "stock": 12,
+        "excludesSteps": []
+      },
+      {
+        "id": "neck-material-opt3-1788607998292",
+        "name": "Figured Maple",
+        "stock": 3,
+        "excludesSteps": []
+      },
+      {
+        "id": "neck-material-opt4-1788608073034",
+        "name": "Mahogany",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "neck-solid-timber",
+        "name": "Solid Timber (no scarf joint)",
+        "stock": 0,
+        "excludesSteps": [
+          "NK3"
+        ]
+      }
+    ]
+  },
+  "Neck Lamination": {
+    "tab": null,
+    "requiresSelection": {
+      "category": "Neck Material",
+      "optionId": "neck-solid-timber"
+    },
+    "options": [
+      {
+        "id": "neck-lam-laminated",
+        "name": "Laminated (multi-piece)",
+        "stock": 99,
+        "excludesSteps": []
+      },
+      {
+        "id": "neck-lam-solid",
+        "name": "Solid (single-piece)",
+        "stock": 99,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Headstock Veneer": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": []
+  },
+  "Soundboard": {
+    "tab": "Soundboard",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "soundboard-opt1-1788608124248",
+        "name": "Engelmann Spruce",
+        "stock": 3,
+        "excludesSteps": []
+      },
+      {
+        "id": "soundboard-opt2-1788608168432",
+        "name": "Huon Pine",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "soundboard-opt3-1788608188444",
+        "name": "King Billy Pine",
+        "stock": 3,
+        "excludesSteps": []
+      },
+      {
+        "id": "soundboard-opt4-1788609022835",
+        "name": "Sitka Spruce",
+        "stock": 4,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Rosette": {
+    "tab": "Soundboard",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "body-assembly-opt5-1788613406161",
+        "name": "Timber rosette",
+        "stock": 99,
+        "excludesSteps": []
+      },
+      {
+        "id": "body-assembly-opt6-1788613450849",
+        "name": "Signature Rosette",
+        "stock": 99,
+        "excludesSteps": [
+          "TP5"
+        ]
+      }
+    ]
+  },
+  "Braces and Bridge plate": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "braces-and-bridge-plate-opt1-1788609890618",
+        "name": "Spruce Bracing and Maple plate",
+        "stock": 8,
+        "excludesSteps": [
+          "BR3"
+        ]
+      },
+      {
+        "id": "braces-and-bridge-plate-opt2-1788609970758",
+        "name": "Spruce Bracing and Blackwood plate",
+        "stock": 8,
+        "excludesSteps": [
+          "BR3"
+        ]
+      },
+      {
+        "id": "braces-and-bridge-plate-opt3-1788610086402",
+        "name": "Spruce & CF Falcate Bracing & Plate",
+        "stock": 6,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Rear Plate": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "rear-plate-opt1-1788609152199",
+        "name": "Blackwood",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "rear-plate-opt2-1788609175228",
+        "name": "Mahogany",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "rear-plate-opt3-1788609211567",
+        "name": "Huon Pine",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "rear-plate-opt4-1788609288806",
+        "name": "Ebony",
+        "stock": 3,
+        "excludesSteps": []
+      },
+      {
+        "id": "rear-plate-opt5-1788611203665",
+        "name": "Qld. Maple",
+        "stock": 6,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Sides & Bindings": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "binding-yes",
+        "name": "Maple Sides & Maple binding",
+        "stock": 32,
+        "excludesSteps": []
+      },
+      {
+        "id": "binding-no",
+        "name": "No binding (skips binding steps)",
+        "stock": 99,
+        "excludesSteps": [
+          "SB7",
+          "SB8",
+          "MA13"
+        ]
+      },
+      {
+        "id": "sides-bindings-opt3-1788606877523",
+        "name": "Ebony Sides & Ebony Binding",
+        "stock": 32,
+        "excludesSteps": []
+      },
+      {
+        "id": "sides-bindings-opt4-1788606943182",
+        "name": "Blackwood Sides & Blackwood Binding",
+        "stock": 32,
+        "excludesSteps": []
+      },
+      {
+        "id": "sides-bindings-opt5-1788611281448",
+        "name": "Qld. Maple Sides & Qld. Maple Binding",
+        "stock": 20,
+        "excludesSteps": []
+      },
+      {
+        "id": "sides-bindings-opt6-1788611479231",
+        "name": "Huon Pine Sides & Huon Binding",
+        "stock": 20,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "End Blocks & Linings": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "end-blocks-linings-opt1-1788611806524",
+        "name": "Kauri Blocks and Kerfed Linings",
+        "stock": 10,
+        "excludesSteps": []
+      },
+      {
+        "id": "end-blocks-linings-opt2-1788611916556",
+        "name": "Kauri Blocks and Solid Kauri Linings",
+        "stock": 6,
+        "excludesSteps": [
+          "EB7"
+        ]
+      }
+    ]
+  },
+  "Bridge": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "bridge-opt1-1788612016040",
+        "name": "Ebony Bridge",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "bridge-opt2-1788612063895",
+        "name": "Blackwood Bridge",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "bridge-opt3-1788612088995",
+        "name": "Rosewood bridge",
+        "stock": 6,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Nut & Saddle": {
+    "tab": null,
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "nut-bone",
+        "name": "Bone nut & saddle",
+        "stock": 10,
+        "excludesSteps": []
+      },
+      {
+        "id": "nut-tusq",
+        "name": "TUSQ nut & saddle",
+        "stock": 6,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Body Purfling": {
+    "tab": "Purfling",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "body-assembly-opt1-1788613122759",
+        "name": "B.W.B Purfling",
+        "stock": 40,
+        "excludesSteps": []
+      },
+      {
+        "id": "body-assembly-opt2-1788613170592",
+        "name": "W.B.W Purfling",
+        "stock": 20,
+        "excludesSteps": []
+      },
+      {
+        "id": "body-assembly-opt3-1788613258348",
+        "name": "Deluxe 5 core B.W.B.W.B Purfling",
+        "stock": 20,
+        "excludesSteps": []
+      },
+      {
+        "id": "purfling-none-body",
+        "name": "No Purfling",
+        "stock": 99,
+        "excludesSteps": [
+          "SB7"
+        ]
+      }
+    ]
+  },
+  "Soundboard Purfling": {
+    "tab": "Purfling",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "purfling-deluxe-soundboard-1",
+        "name": "Deluxe Purfling (soundboard)",
+        "stock": 0,
+        "excludesSteps": []
+      },
+      {
+        "id": "purfling-none-soundboard",
+        "name": "No Purfling",
+        "stock": 99,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Headstock Purfling": {
+    "tab": "Purfling",
+    "requiresSelection": {
+      "category": "Soundboard Purfling",
+      "optionId": "purfling-deluxe-soundboard-1"
+    },
+    "options": [
+      {
+        "id": "body-assembly-opt4-1788613318611",
+        "name": "Headstock Purfling Deluxe",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "purfling-none-headstock",
+        "name": "No Headstock Purfling",
+        "stock": 99,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Tuners": {
+    "tab": "Final Assembly",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "final-assembly-opt1-1788613559497",
+        "name": "Gotoh Machine heads",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "final-assembly-opt2-1788613586938",
+        "name": "Grover Machine heads",
+        "stock": 6,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Strings": {
+    "tab": "Final Assembly",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "final-assembly-opt3-1788613628754",
+        "name": "Elixir 11 - 56",
+        "stock": 10,
+        "excludesSteps": []
+      },
+      {
+        "id": "final-assembly-opt4-1788613685220",
+        "name": "Elixir 10 - 46",
+        "stock": 10,
+        "excludesSteps": []
+      }
+    ]
+  },
+  "Hardware Colour": {
+    "tab": "Final Assembly",
+    "requiresSelection": null,
+    "options": [
+      {
+        "id": "final-assembly-opt5-1788613759380",
+        "name": "Hardware - Gold",
+        "stock": 6,
+        "excludesSteps": []
+      },
+      {
+        "id": "final-assembly-opt6-1788613780974",
+        "name": "Hardware - Chrome",
+        "stock": 10,
+        "excludesSteps": []
+      }
+    ]
+  }
+};
+
+let CATALOG = loadCatalog();
+let buildSelections = {}; // categoryName -> optionId, for the current visitor's session only
+
+// Accepts either the current schema ({tab, requiresSelection, options}) or the
+// older plain-array schema from before tabs/conditions existed, so nothing
+// breaks on data saved before this update.
+function normalizeCatalog(raw){
+  const out = {};
+  Object.entries(raw||{}).forEach(([name, val])=>{
+    if(Array.isArray(val)) out[name] = { tab: null, requiresSelection: null, options: val };
+    else out[name] = { tab: val.tab||null, requiresSelection: val.requiresSelection||null, options: val.options||[] };
+  });
+  return out;
+}
+
+function loadCatalog(){
+  try {
+    const raw = localStorage.getItem(CATALOG_STORAGE_KEY);
+    if(raw) return normalizeCatalog(JSON.parse(raw));
+  } catch(e){}
+  return normalizeCatalog(JSON.parse(JSON.stringify(DEFAULT_CATALOG)));
+}
+function saveCatalog(){
+  try { localStorage.setItem(CATALOG_STORAGE_KEY, JSON.stringify(CATALOG)); }
+  catch(e){ console.warn('Could not save catalog:', e); }
+}
+// On a real published page (http/https), try to load the admin-published
+// catalog.json so customers see the current stock, not just this browser's copy.
+if(location.protocol === 'http:' || location.protocol === 'https:'){
+  fetch('catalog.json').then(r => r.ok ? r.json() : null).then(data => {
+    if(data){ CATALOG = normalizeCatalog(data); if(document.getElementById('build-view').style.display !== 'none') renderBuild(); }
+  }).catch(()=>{ /* no published catalog.json yet — fall back to embedded/local copy */ });
+}
+
+function requiredSteps(){
+  const excluded = new Set();
+  Object.entries(buildSelections).forEach(([category, optId])=>{
+    const cat = CATALOG[category];
+    if(!cat) return;
+    const opt = (cat.options||[]).find(o=>o.id===optId);
+    if(opt) (opt.excludesSteps||[]).forEach(s=>excluded.add(s));
+  });
+  return STEPS.map(s=>s[0]).filter(id=>!excluded.has(id));
+}
+
+// Preferred category order — matches the actual build sequence (Truss Rod -> ... -> Final Assembly).
+// Categories not listed here (new ones you add) just appear after these, in the order you added them.
+const CATEGORY_ORDER = [
+  "Truss Rod", "Fretboard", "Neck Material", "Neck Lamination", "Headstock Veneer",
+  "Soundboard", "Rosette",
+  "Braces and Bridge plate", "Rear Plate", "Sides & Bindings", "End Blocks & Linings",
+  "Bridge", "Nut & Saddle",
+  "Body Purfling", "Soundboard Purfling", "Headstock Purfling",
+  "Tuners", "Strings", "Hardware Colour"
+];
+function orderedCategories(catalog){
+  const names = Object.keys(catalog);
+  return names.sort((a,b)=>{
+    const ia = CATEGORY_ORDER.indexOf(a), ib = CATEGORY_ORDER.indexOf(b);
+    if(ia === -1 && ib === -1) return 0; // keep original relative order for unlisted categories
+    if(ia === -1) return 1;
+    if(ib === -1) return -1;
+    return ia - ib;
+  });
+}
+
+// A category can optionally require another category's specific option to be
+// selected first (e.g. "Headstock Purfling" only appears once "Deluxe Purfling
+// (soundboard)" is chosen). This checks whether that condition is currently met.
+function categoryConditionMet(cat){
+  if(!cat.requiresSelection) return true;
+  return buildSelections[cat.requiresSelection.category] === cat.requiresSelection.optionId;
+}
+function categoryVisible(name, catalog){
+  const cat = catalog[name];
+  if(!cat || !cat.options || !cat.options.length) return false;
+  return categoryConditionMet(cat);
+}
+// If a category's prerequisite is no longer met (the customer changed their
+// mind), drop any selection that was made while it WAS visible, so a hidden
+// category never silently keeps affecting the BOM or required steps.
+function pruneHiddenSelections(){
+  Object.keys(buildSelections).forEach(category=>{
+    const cat = CATALOG[category];
+    if(!cat || !categoryConditionMet(cat)) delete buildSelections[category];
+  });
+}
+
+// Groups the ordered category list into render blocks: categories that share
+// a "tab" name are collected together under one heading; everything else
+// renders as its own standalone block, same as before tabs existed.
+function buildRenderBlocks(catalog){
+  const blocks = [];
+  const tabIndex = {};
+  orderedCategories(catalog).forEach(name=>{
+    const cat = catalog[name];
+    if(!cat) return;
+    if(cat.tab){
+      if(tabIndex[cat.tab] === undefined){
+        tabIndex[cat.tab] = blocks.length;
+        blocks.push({ type:'tab', tab: cat.tab, categories: [name] });
+      } else {
+        blocks[tabIndex[cat.tab]].categories.push(name);
+      }
+    } else {
+      blocks.push({ type:'single', categories: [name] });
+    }
+  });
+  return blocks;
+}
+
+function renderCategorySelect(category){
+  const cat = CATALOG[category];
+  const block = document.createElement('div');
+  block.className = 'cat-block';
+  const sel = document.createElement('select');
+  sel.dataset.category = category;
+  sel.innerHTML = '<option value="">\u2014 choose \u2014</option>' + cat.options.map(o=>{
+    const outOfStock = o.stock <= 0;
+    const selected = buildSelections[category] === o.id ? ' selected' : '';
+    return `<option value="${o.id}"${selected}${outOfStock?' disabled':''}>${o.name}${outOfStock?' (out of stock)':''}</option>`;
+  }).join('');
+  block.innerHTML = `<h3>${category}</h3>`;
+  block.appendChild(sel);
+  return block;
+}
+
+function renderBuild(){
+  pruneHiddenSelections();
+  const catalogEl = document.getElementById('build-catalog');
+  catalogEl.innerHTML = '';
+  buildRenderBlocks(CATALOG).forEach(block=>{
+    const visibleCats = block.categories.filter(name=>categoryVisible(name, CATALOG));
+    if(!visibleCats.length) return;
+    if(block.type === 'tab'){
+      const wrap = document.createElement('div');
+      wrap.className = 'tab-group';
+      wrap.innerHTML = `<h2>${block.tab}</h2>`;
+      const inner = document.createElement('div');
+      inner.className = 'tab-group-body';
+      visibleCats.forEach(name => inner.appendChild(renderCategorySelect(name)));
+      wrap.appendChild(inner);
+      catalogEl.appendChild(wrap);
+    } else {
+      catalogEl.appendChild(renderCategorySelect(visibleCats[0]));
+    }
+  });
+  catalogEl.querySelectorAll('select').forEach(sel=>{
+    sel.addEventListener('change', ()=>{
+      if(sel.value) buildSelections[sel.dataset.category] = sel.value;
+      else delete buildSelections[sel.dataset.category];
+      renderBuild(); // full re-render — a change can reveal/hide conditional categories
+    });
+  });
+  renderBom();
+}
+
+function renderBom(){
+  const bomEl = document.getElementById('build-bom');
+  const entries = Object.entries(buildSelections);
+  if(!entries.length){
+    bomEl.innerHTML = '<li class="bom-empty">Nothing chosen yet.</li>';
+    return;
+  }
+  bomEl.innerHTML = entries.map(([category, optId])=>{
+    const cat = CATALOG[category];
+    const opt = cat ? (cat.options||[]).find(o=>o.id===optId) : null;
+    return `<li><strong>${category}:</strong> ${opt ? opt.name : optId}</li>`;
+  }).join('');
+}
+
+function buildSummaryText(){
+  const name = document.getElementById('build-name').value || '(name not given)';
+  const email = document.getElementById('build-email').value || '(email not given)';
+  const lines = [`Customer build request`, `Name: ${name}`, `Email: ${email}`, ``, `Components chosen:`];
+  Object.entries(buildSelections).forEach(([category, optId])=>{
+    const cat = CATALOG[category];
+    const opt = cat ? (cat.options||[]).find(o=>o.id===optId) : null;
+    lines.push(`  \u2022 ${category}: ${opt ? opt.name : optId}`);
+  });
+  const req = requiredSteps();
+  lines.push('', `Required process steps: ${req.length} of ${STEPS.length}`);
+  return lines.join('\n');
+}
+
+function showBuild(){
+  hideAllViews();
+  document.getElementById('build-view').style.display = 'block';
+  renderBuild();
+}
+
+document.getElementById('build-submit').addEventListener('click', ()=>{
+  const subject = encodeURIComponent('Guitar build request — ' + (document.getElementById('build-name').value || 'new customer'));
+  const body = encodeURIComponent(buildSummaryText());
+  location.href = `mailto:?subject=${subject}&body=${body}`;
+});
+document.getElementById('build-download').addEventListener('click', ()=>{
+  const data = { name: document.getElementById('build-name').value, email: document.getElementById('build-email').value,
+                 selections: buildSelections, requiredSteps: requiredSteps() };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'guitar-build-request.json';
+  a.click();
+});
+
+// ---------- Admin: catalog editor (Craig only — not linked from customer nav) ----------
+function showAdmin(){
+  hideAllViews();
+  document.getElementById('admin-view').style.display = 'block';
+  renderAdmin();
+}
+
+// Every other option in the catalog, formatted for the "only show when" picker —
+// excludes options belonging to the category currently being edited.
+function allOptionChoices(excludingCategory){
+  const groups = [];
+  Object.entries(CATALOG).forEach(([catName, cat])=>{
+    if(catName === excludingCategory) return;
+    if(!cat.options || !cat.options.length) return;
+    groups.push({ category: catName, options: cat.options });
+  });
+  return groups;
+}
+
+function renderAdmin(){
+  const el = document.getElementById('admin-catalog');
+  el.innerHTML = '';
+  orderedCategories(CATALOG).forEach(category=>{
+    const cat = CATALOG[category];
+    const catDiv = document.createElement('div');
+    catDiv.className = 'admin-cat';
+
+    const reqVal = cat.requiresSelection ? (cat.requiresSelection.category + '::' + cat.requiresSelection.optionId) : '';
+    const reqGroupsHtml = allOptionChoices(category).map(g=>
+      `<optgroup label="${g.category}">` +
+      g.options.map(o=>`<option value="${g.category}::${o.id}"${reqVal===(g.category+'::'+o.id)?' selected':''}>${o.name}</option>`).join('') +
+      `</optgroup>`
+    ).join('');
+
+    catDiv.innerHTML = `<div class="admin-cat-title">
+        <input type="text" value="${category}" data-old-category="${category}" class="cat-name-input" title="Category name">
+        <button class="add-option" data-category="${category}">+ Add option</button>
+        <button data-remove-category="${category}">Remove category</button>
+      </div>
+      <div class="admin-cat-meta">
+        <label>Tab (groups this with other categories under one heading \u2014 leave blank to show on its own):
+          <input type="text" value="${cat.tab||''}" class="cat-tab-input" data-category="${category}" placeholder="e.g. Soundboard">
+        </label>
+        <label>Only show this category when:
+          <select class="cat-requires-select" data-category="${category}">
+            <option value=""${!reqVal?' selected':''}>\u2014 always shown \u2014</option>
+            ${reqGroupsHtml}
+          </select>
+        </label>
+      </div>`;
+    const rows = document.createElement('div');
+    (cat.options||[]).forEach(opt=>{
+      const row = document.createElement('div');
+      row.className = 'admin-row';
+      const excludes = new Set(opt.excludesSteps||[]);
+      const optGroupsHtml = LANES.map(([laneName])=>{
+        const optionsHtml = stepsByLane[laneName].map(s=>
+          `<option value="${s.id}"${excludes.has(s.id)?' selected':''}>${s.id} \u2014 ${s.name}</option>`
+        ).join('');
+        return `<optgroup label="${laneName}">${optionsHtml}</optgroup>`;
+      }).join('');
+      row.innerHTML = `
+        <div class="admin-row-main">
+          <input type="text" value="${opt.name}" data-field="name" data-category="${category}" data-id="${opt.id}">
+          <input type="number" value="${opt.stock}" data-field="stock" data-category="${category}" data-id="${opt.id}">
+          <button data-remove-option data-category="${category}" data-id="${opt.id}">Remove</button>
+        </div>
+        <div class="admin-row-excludes">
+          <label>Skips these build steps (optional \u2014 ctrl/cmd-click to pick more than one, or none at all):</label>
+          <select multiple size="4" class="excludes-select" data-field="excludesSteps" data-category="${category}" data-id="${opt.id}">${optGroupsHtml}</select>
+        </div>`;
+      rows.appendChild(row);
+    });
+    catDiv.appendChild(rows);
+    el.appendChild(catDiv);
+  });
+
+  el.querySelectorAll('.cat-tab-input').forEach(inp=>{
+    inp.addEventListener('change', ()=>{
+      CATALOG[inp.dataset.category].tab = inp.value.trim() || null;
+      saveCatalog();
+    });
+  });
+  el.querySelectorAll('.cat-requires-select').forEach(sel=>{
+    sel.addEventListener('change', ()=>{
+      const cat = CATALOG[sel.dataset.category];
+      if(!sel.value){ cat.requiresSelection = null; }
+      else {
+        const [reqCat, reqOptId] = sel.value.split('::');
+        cat.requiresSelection = { category: reqCat, optionId: reqOptId };
+      }
+      saveCatalog();
+    });
+  });
+  el.querySelectorAll('.excludes-select').forEach(sel=>{
+    sel.addEventListener('change', ()=>{
+      const opt = CATALOG[sel.dataset.category].options.find(o=>o.id===sel.dataset.id);
+      if(!opt) return;
+      opt.excludesSteps = Array.from(sel.selectedOptions).map(o=>o.value);
+      saveCatalog();
+    });
+  });
+  el.querySelectorAll('input[data-field]').forEach(inp=>{
+    inp.addEventListener('change', ()=>{
+      const opt = CATALOG[inp.dataset.category].options.find(o=>o.id===inp.dataset.id);
+      if(!opt) return;
+      if(inp.dataset.field === 'stock') opt.stock = parseInt(inp.value,10) || 0;
+      else opt.name = inp.value;
+      saveCatalog();
+    });
+  });
+  el.querySelectorAll('.cat-name-input').forEach(inp=>{
+    inp.addEventListener('change', ()=>{
+      const oldName = inp.dataset.oldCategory;
+      const newName = inp.value.trim();
+      if(!newName || newName === oldName) return;
+      CATALOG[newName] = CATALOG[oldName];
+      delete CATALOG[oldName];
+      // update anything that referenced the old name as a prerequisite
+      Object.values(CATALOG).forEach(c=>{
+        if(c.requiresSelection && c.requiresSelection.category === oldName) c.requiresSelection.category = newName;
+      });
+      saveCatalog();
+      renderAdmin();
+    });
+  });
+  el.querySelectorAll('[data-remove-option]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      CATALOG[btn.dataset.category].options = CATALOG[btn.dataset.category].options.filter(o=>o.id!==btn.dataset.id);
+      saveCatalog(); renderAdmin();
+    });
+  });
+  el.querySelectorAll('[data-remove-category]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      delete CATALOG[btn.dataset.removeCategory];
+      saveCatalog(); renderAdmin();
+    });
+  });
+  el.querySelectorAll('.add-option').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const cat = btn.dataset.category;
+      const n = CATALOG[cat].options.length + 1;
+      CATALOG[cat].options.push({ id: cat.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-opt'+n+'-'+Date.now(), name: 'New option', stock: 0, excludesSteps: [] });
+      saveCatalog(); renderAdmin();
+    });
+  });
+}
+
+document.getElementById('admin-add-category').addEventListener('click', ()=>{
+  let n = 1, name = 'New Category';
+  while(CATALOG[name]) { n++; name = 'New Category ' + n; }
+  CATALOG[name] = { tab: null, requiresSelection: null, options: [] };
+  saveCatalog();
+  renderAdmin();
+});
+document.getElementById('admin-export').addEventListener('click', ()=>{
+  const blob = new Blob([JSON.stringify(CATALOG, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'catalog.json';
+  a.click();
+});
+document.getElementById('admin-import-btn').addEventListener('click', ()=>{
+  document.getElementById('admin-import-file').click();
+});
+document.getElementById('admin-import-file').addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    try { CATALOG = normalizeCatalog(JSON.parse(reader.result)); saveCatalog(); renderAdmin(); }
+    catch(err){ alert("That file doesn't look like a valid catalog export."); }
+  };
+  reader.readAsText(file);
+});
+
 
 route();
 
